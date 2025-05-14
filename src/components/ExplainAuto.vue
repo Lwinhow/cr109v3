@@ -23,7 +23,7 @@ export default {
       homePage_flag: true,
       playAnimation_flag: false,
       pauseAnimation_flag: false,
-      maxIndex: 133,
+      maxIndex: 136,
     }
   },
   mounted() {
@@ -71,7 +71,9 @@ export default {
               '8A7A0751443140169B4CDFAABD31B60F'
             ])
             __g.camera.playAnimation(10);
-          } else if (this.sleepIndex === 101) {
+          } else if (this.sleepIndex === 103) {
+            __g.camera.playAnimation(9);
+          } else if (this.sleepIndex === 104) {
             __g.tileLayer.hideActors({
               id: '6F131A6E44FC74C00A89DB85C75F348F',
               objectIds: [
@@ -84,6 +86,7 @@ export default {
               objectIds: [
                 '1b2LVM2n49_sCqbWJHFhS$',
                 '0mtLUR_lqO6dSzIpY61rEU',
+                '0QePe94mzzuzNlBJbwzKEi'
               ]
             })
             __g.tileLayer.hideActors({
@@ -100,7 +103,6 @@ export default {
                 '1Gdp$l43ehsjNt$V8ijmNo',
               ]
             })
-            __g.camera.playAnimation(9);
           }
         } else {
           return 0
@@ -148,6 +150,7 @@ export default {
     async playAnimation() {
       this.playAnimation_flag = !this.playAnimation_flag
       if (this.playAnimation_flag) {
+        __g.marker.clear()
         __g.camera.playAnimation(1);
         await this.$refs.audio.play();
         this.sleepIndex = 0
@@ -186,7 +189,9 @@ export default {
                 '8A7A0751443140169B4CDFAABD31B60F'
               ])
               __g.camera.playAnimation(10);
-            } else if (this.sleepIndex === 101) {
+            } else if (this.sleepIndex === 103) {
+              __g.camera.playAnimation(9);
+            } else if (this.sleepIndex === 104) {
               __g.tileLayer.hideActors({
                 id: '6F131A6E44FC74C00A89DB85C75F348F',
                 objectIds: [
@@ -199,6 +204,7 @@ export default {
                 objectIds: [
                   '1b2LVM2n49_sCqbWJHFhS$',
                   '0mtLUR_lqO6dSzIpY61rEU',
+                  '0QePe94mzzuzNlBJbwzKEi'
                 ]
               })
               __g.tileLayer.hideActors({
@@ -215,7 +221,6 @@ export default {
                   '1Gdp$l43ehsjNt$V8ijmNo',
                 ]
               })
-              __g.camera.playAnimation(9);
             }
           } else {
             return 0

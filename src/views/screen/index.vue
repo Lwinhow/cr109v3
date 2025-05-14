@@ -121,6 +121,7 @@ export default {
       let host = config[process.env.NODE_ENV].playerPath;
       let _onReady = async () => {
         this.flag = true
+        __g.camera.set([-1311493.58875, 157033.471719, 574.008711, -45.003574, -99.802147, 3])
         __g.marker.clear()
         __g.camera.stopAnimation()
         __g.tools.stopPlaneClip();
@@ -155,7 +156,7 @@ export default {
         })
       };
       let _onEvent = async (event) => {
-        // console.log(event)
+        console.log(event)
         let eventType = event.eventtype; //事件类型 参考交互事件类型枚举对象
         let id = event.Id; //图层id
         let objectId = event.ObjectID;
@@ -176,6 +177,7 @@ export default {
                 this.title = markerCamera[userData].name
                 this.videoFlag = true
                 this._getHkwsUrl(markerCamera[userData].id)
+                __g.marker.focus(id)
               }
               break;
             }
