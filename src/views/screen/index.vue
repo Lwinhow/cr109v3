@@ -183,7 +183,9 @@ export default {
                 this.title = markerCamera[userData].name
                 this.videoFlag = true
                 this._getHkwsUrl(markerCamera[userData].id)
-                __g.marker.focus(id)
+              }
+              if (markerCamera[userData].camera) {
+                __g.camera.set(markerCamera[userData].camera)
               }
               break;
             }

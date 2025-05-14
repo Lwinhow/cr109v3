@@ -60,7 +60,8 @@ export const markerCamera = [
         name: 'Security-10',
         image: 'm001.png',
         id: 2401,
-        color: '#0098b6'
+        color: '#0098b6',
+        camera: [-1311773.772813, 157462.26998, 31.229343, -19.480087, -51.535385, 3],
     },
 
     {
@@ -89,7 +90,8 @@ export const markerCamera = [
         name: 'Safety-06',
         image: 'm001.png',
         id: 1701,
-        color: '#cbdc00'
+        color: '#cbdc00',
+        camera: [-1311733.774063, 157426.185859, 21.636455, -30.426353, 31.240334, 3],
     },
     {
         cood: [-1311705.12, 157302.99, 27.7718359375],
@@ -110,7 +112,8 @@ export const markerCamera = [
         name: 'Safety-10',
         image: 'm001.png',
         id: 401,
-        color: '#cbdc00'
+        color: '#cbdc00',
+        camera: [-1311473.449688, 157549.141543, 32.503613, -21.652191, 138.57399, 3],
     },
 
     {
@@ -167,7 +170,8 @@ export const markerCamera = [
         name: 'TBM1-Bottom',
         image: 'm001.png',
         id: 5001,
-        color: '#c71e1e'
+        color: '#c71e1e',
+        camera: [-1311417.755625, 157754.259578, -2.618899, -37.111504, -58.9823, 3],
     },
     {
         cood: [-1311371.2, 157754.78, 10.25466796875],
@@ -203,7 +207,8 @@ export const markerCamera = [
         name: 'ENT',
         image: 'm001.png',
         id: 101,
-        color: '#60e72b'
+        color: '#60e72b',
+        camera: [-1311810.680313, 157398.284727, 28.939602, -20.89617, 106.793144, 3],
     },
     {
         cood: [-1311822.08, 157376.79, 19.010323486328126],
