@@ -13,10 +13,10 @@
         <div class="ct-l2"></div>
         <div class="ct-l3"></div>
       </div>
-      <div class="head-panle-ct-r">
-        <div class="ct-r3"></div>
+      <div v-show="$route.query.page!=='scenario'" class="head-panle-ct-r">
+        <div class="ct-r3" @click="toSandBox"></div>
         <div class="ct-r2"></div>
-        <div class="ct-r1"></div>
+        <div class="ct-r1" @click="refreshClick"></div>
       </div>
     </div>
     <!-- 底部 -->
@@ -32,8 +32,16 @@ export default {
   },
   mounted() {
   },
-  methods: {},
-};
+  methods: {
+    toSandBox() {
+      __g.camera.set([-1311493.58875, 157033.471719, 574.008711, -45.003574, -99.802147, 3])
+    },
+    refreshClick() {
+      location.reload()
+    },
+  },
+}
+;
 </script>
 
 <style lang="scss" scoped>
@@ -160,10 +168,11 @@ export default {
       column-gap: 15px;
 
       .ct-r3 {
-        width: 1px;
-        height: 20px;
-        background: #274F85;
-        margin: 0 10px;
+        width: 30px;
+        height: 30px;
+        background: url("@/assets/screenimages/sandbox.png") center center no-repeat;
+        background-size: 30px 30px;
+        cursor: pointer;
       }
 
       .ct-r2 {
@@ -174,10 +183,11 @@ export default {
       }
 
       .ct-r1 {
-        width: 1px;
-        height: 20px;
-        background: #274F85;
-        margin: 0 10px;
+        width: 30px;
+        height: 30px;
+        background: url("@/assets/screenimages/screen-head-refresh.png") center center no-repeat;
+        background-size: 30px 30px;
+        cursor: pointer;
       }
     }
 

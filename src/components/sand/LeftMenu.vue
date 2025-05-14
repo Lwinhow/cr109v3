@@ -115,7 +115,6 @@ export default {
     __g.camera.stopAnimation()
     __g.tools.stopPlaneClip();
     __g.infoTree.hide('349280C44403CF4FA47257999931BEF5')
-    this.$parent.$parent.rePanorama360();
   }
 };
 </script>

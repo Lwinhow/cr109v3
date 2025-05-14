@@ -216,6 +216,7 @@ import {
   getPersionStat
 } from "@/apis/getData";
 import HlsVideo from "@/components/HlsVideo.vue";
+import {addMarkerCamera} from "@/utils/marker";
 
 export default {
   name: "ContentPanleAlarm",
@@ -418,6 +419,7 @@ export default {
     };
   },
   async mounted() {
+    await addMarkerCamera()
     let lineDom = this.$refs.glBarChart;
     this.deviceOnlineChart = echarts.init(lineDom);
     this._getDeviceOnline()
@@ -438,6 +440,7 @@ export default {
     this.attendanceTimer = null;
     clearTimeout(this.deviceOnlineTimer);
     this.deviceOnlineTimer = null;
+    __g.marker.clear()
   },
   methods: {
     closeAllDialog() {
@@ -450,7 +453,7 @@ export default {
         this.environmentData = type;
         this.lineTboxShow = true;
         if (type.key !== 'humid' && type.key !== 'temp') {
-          __g.camera.set([-1311067.237812,158073.031426,-19.420905,-3.498901,167.725174,3])
+          __g.camera.set([-1311067.237812, 158073.031426, -19.420905, -3.498901, 167.725174, 3])
         }
       }
     },
