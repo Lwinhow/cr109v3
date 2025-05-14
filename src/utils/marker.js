@@ -1,161 +1,187 @@
 export const markerCamera = [
     {
         cood: [-1311929.6, 157387.65, 14.267177734375],
-        name: 'security-01',
+        name: 'Security-01',
         image: 'm001.png',
         id: null,
+        color: '#0098b6'
     },
     {
         cood: [-1311836.16, 157302.30000000002, 14.75189453125],
-        name: 'security-02',
+        name: 'Security-02',
         image: 'm001.png',
         id: null,
+        color: '#0098b6'
     },
     {
         cood: [-1311772.48, 157330.12, 15.064951171875],
-        name: 'security-03',
+        name: 'Security-03',
         image: 'm001.png',
         id: null,
+        color: '#0098b6'
     },
     {
         cood: [-1311720, 157309.69, 15.477216796875],
-        name: 'security-04',
+        name: 'Security-04',
         image: 'm001.png',
         id: null,
+        color: '#0098b6'
     },
     {
         cood: [-1311350.72, 157816.35, 12.847216796875001],
-        name: 'security-06',
+        name: 'Security-06',
         image: 'm001.png',
         id: null,
+        color: '#0098b6'
     },
     {
         cood: [-1311559.04, 157778.96, 9.7237744140625],
-        name: 'security-07',
+        name: 'Security-07',
         image: 'm001.png',
         id: null,
+        color: '#0098b6'
     },
     {
         cood: [-1311576.16, 157779.34, 8.8676171875],
-        name: 'security-08',
+        name: 'Security-08',
         image: 'm001.png',
         id: null,
+        color: '#0098b6'
     },
     {
         cood: [-1311668.16, 157768.87, 12.574111328125],
-        name: 'security-09',
+        name: 'Security-09',
         image: 'm001.png',
         id: null,
+        color: '#0098b6'
     },
     {
         cood: [-1311766.08, 157468.42, 17.106796875],
-        name: 'security-10',
+        name: 'Security-10',
         image: 'm001.png',
         id: 2401,
+        color: '#0098b6'
     },
 
     {
         cood: [-1311629.44, 157444.76, 2.1100781250000002],
-        name: 'safety-01',
+        name: 'Safety-01',
         image: 'm001.png',
         id: 1801,
+        color: '#cbdc00'
     },
     {
         cood: [-1311650.72, 157622.63, 14.7632421875],
-        name: 'safety-03',
+        name: 'Safety-03',
         image: 'm001.png',
         id: 601,
+        color: '#cbdc00'
     },
     {
         cood: [-1311617.76, 157742.51, 13.7436328125],
-        name: 'safety-05',
+        name: 'Safety-05',
         image: 'm001.png',
         id: 1601,
+        color: '#cbdc00'
     },
     {
         cood: [-1311747.52, 157428.44, 14.990390625],
-        name: 'safety-06',
+        name: 'Safety-06',
         image: 'm001.png',
         id: 1701,
+        color: '#cbdc00'
     },
     {
         cood: [-1311705.12, 157302.99, 27.7718359375],
-        name: 'safety-07',
+        name: 'Safety-07',
         image: 'm001.png',
         id: 2201,
+        color: '#cbdc00'
     },
     {
         cood: [-1311401.12, 157656.63, 9.7462109375],
-        name: 'safety-09',
+        name: 'Safety-09',
         image: 'm001.png',
         id: 2301,
+        color: '#cbdc00'
     },
     {
         cood: [-1311514.08, 157542.67, 0.361015625],
-        name: 'safety-10',
+        name: 'Safety-10',
         image: 'm001.png',
         id: 401,
+        color: '#cbdc00'
     },
 
     {
         cood: [-1311683.84, 157367.82, -5.326484375],
-        name: 'IPdome',
+        name: 'IPDOME',
         image: 'm001.png',
         id: null,
+        color: '#60e72b'
     },
     {
         cood: [-1311682.24, 157353.54, 10.2598046875],
         name: 'TBM2-Surface',
         image: 'm001.png',
         id: 4001,
+        color: '#c71e1e'
     },
     {
         cood: [-1311728.32, 157455.17, 15.00375],
         name: 'LP1',
         image: 'm001.png',
         id: null,
+        color: '#60e72b'
     },
     {
         cood: [-1311659.04, 157562.94, 14.672656250000001],
         name: 'LP4',
         image: 'm001.png',
         id: null,
+        color: '#60e72b'
     },
     {
         cood: [-1311662.8800000001, 157592.89, 15.480625],
         name: 'TND-04',
         image: 'm001.png',
         id: 701,
+        color: '#60e72b'
     },
     {
         cood: [-1311493.92, 157679.44, 7.0566210937500005],
         name: 'LP2',
         image: 'm001.png',
         id: null,
+        color: '#60e72b'
     },
     {
         cood: [-1311429.92, 157766.97, -6.6218994140625],
         name: 'TBM2-Bottom',
         image: 'm001.png',
         id: 3001,
+        color: '#c71e1e'
     },
     {
         cood: [-1311414.8800000001, 157759.13, -10.403623046875],
         name: 'TBM1-Bottom',
         image: 'm001.png',
         id: 5001,
+        color: '#c71e1e'
     },
     {
         cood: [-1311371.2, 157754.78, 10.25466796875],
         name: 'Site-Office',
         image: 'm001.png',
         id: 6001,
+        color: '#f36a6a'
     },
     {
         cood: [-1311404.48, 157777.01, -6.1598315429687505],
         name: 'TBM-Disant',
         image: 'm001.png',
         id: 8001,
+        color: '#c71e1e'
     },
 
     {
@@ -163,30 +189,35 @@ export const markerCamera = [
         name: 'FR-01',
         image: 'm001.png',
         id: 2501,
+        color: '#60e72b'
     },
     {
         cood: [-1311827.2, 157383.71, 16.799375],
         name: 'FR-02',
         image: 'm001.png',
         id: 2601,
+        color: '#60e72b'
     },
     {
         cood: [-1311809.92, 157387.48, 19.189429931640625],
         name: 'ENT',
         image: 'm001.png',
         id: 101,
+        color: '#60e72b'
     },
     {
         cood: [-1311822.08, 157376.79, 19.010323486328126],
         name: 'EXT',
         image: 'm001.png',
         id: 201,
+        color: '#60e72b'
     },
     {
         cood: [-1311803.68, 157381.13, 19.137783203125],
         name: 'Inspection',
         image: 'm001.png',
         id: 801,
+        color: '#60e72b'
     },
 ]
 
@@ -208,8 +239,8 @@ export const addMarkerCamera = async () => {
             textRange: [1, 200],
             text: markerCamera[i].name,
             fontSize: 12,
-            textBackgroundColor: [1, 1, 1, 0],
-            fontColor: '#c71e1e',
+            textBackgroundColor: markerCamera[i].color,
+            fontColor: '#ffffff',
             imagePath: path + '/marker/' + markerCamera[i].image, //显示图片路径
             hoverImagePath: path + '/marker/' + markerCamera[i].image, //显示图片路径
             fixedSize: true, //图片固定尺寸，取值范围：false 自适应，近大远小，true 固定尺寸，默认值：false
