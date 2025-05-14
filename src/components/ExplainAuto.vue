@@ -11,16 +11,6 @@
       </div>
     </div>
     <div class="text"></div>
-    <div v-if="playMp4" class="videoPlay">
-      <div class="videoBox">
-        <div class="icon" @click="closeVideo">
-          <i class="el-icon-close"></i>
-        </div>
-      </div>
-      <video ref="videoPlayer" controls>
-        <source src="../assets/MP4/202505111543.mp4" type="video/mp4">
-      </video>
-    </div>
   </div>
 </template>
 <script>
@@ -33,8 +23,7 @@ export default {
       homePage_flag: true,
       playAnimation_flag: false,
       pauseAnimation_flag: false,
-      maxIndex: 135,
-      playMp4: false,
+      maxIndex: 133,
     }
   },
   mounted() {
@@ -75,7 +64,12 @@ export default {
             fdapi.tools.startVolumeClip(bbox, 0, false, false, [0, 0, 0]);
           } else if (this.sleepIndex === 91) {
             __g.tools.stopVolumeClip();
-            __g.tileLayer.showAllActors()
+            __g.tileLayer.showAllActors([
+              '6F131A6E44FC74C00A89DB85C75F348F',
+              '2929EE0F4E3B5DBC106A5E84D5A11CF7',
+              '36CFF0E147FA230EDF52B8BE76FCF595',
+              '8A7A0751443140169B4CDFAABD31B60F'
+            ])
             __g.camera.playAnimation(10);
           } else if (this.sleepIndex === 101) {
             __g.tileLayer.hideActors({
@@ -92,9 +86,21 @@ export default {
                 '0mtLUR_lqO6dSzIpY61rEU',
               ]
             })
+            __g.tileLayer.hideActors({
+              id: '36CFF0E147FA230EDF52B8BE76FCF595',
+              objectIds: [
+                '2pzNAvAEh7VNN8E8neu1N4',
+                '0baV0pUg15C1eNga5znb1x',
+              ]
+            })
+            __g.tileLayer.hideActors({
+              id: '8A7A0751443140169B4CDFAABD31B60F',
+              objectIds: [
+                '2F$DRDi68uQK5aXzHna14s',
+                '1Gdp$l43ehsjNt$V8ijmNo',
+              ]
+            })
             __g.camera.playAnimation(9);
-          } else if (this.sleepIndex === 134) {
-            await this.playVideo()
           }
         } else {
           return 0
@@ -127,29 +133,6 @@ export default {
         }
       } else {
         console.log('?')
-      }
-    },
-
-    closeVideo() {
-      this.playMp4 = false
-    },
-    async playVideo() {
-      this.playMp4 = true
-      await this.sleep(1000)
-      const video = this.$refs.videoPlayer;
-      try {
-        await video.play();
-        if (video.requestFullscreen) {
-          await video.requestFullscreen();
-        } else if (video.mozRequestFullScreen) { // Firefox
-          video.mozRequestFullScreen();
-        } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
-          video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) { // IE/Edge
-          video.msRequestFullscreen();
-        }
-      } catch (error) {
-        console.error('全屏播放失败:', error);
       }
     },
     rePayAnimation() {
@@ -198,7 +181,9 @@ export default {
               __g.tools.stopVolumeClip();
               __g.tileLayer.showAllActors([
                 '6F131A6E44FC74C00A89DB85C75F348F',
-                '2929EE0F4E3B5DBC106A5E84D5A11CF7'
+                '2929EE0F4E3B5DBC106A5E84D5A11CF7',
+                '36CFF0E147FA230EDF52B8BE76FCF595',
+                '8A7A0751443140169B4CDFAABD31B60F'
               ])
               __g.camera.playAnimation(10);
             } else if (this.sleepIndex === 101) {
@@ -216,23 +201,21 @@ export default {
                   '0mtLUR_lqO6dSzIpY61rEU',
                 ]
               })
+              __g.tileLayer.hideActors({
+                id: '36CFF0E147FA230EDF52B8BE76FCF595',
+                objectIds: [
+                  '2pzNAvAEh7VNN8E8neu1N4',
+                  '0baV0pUg15C1eNga5znb1x',
+                ]
+              })
+              __g.tileLayer.hideActors({
+                id: '8A7A0751443140169B4CDFAABD31B60F',
+                objectIds: [
+                  '2F$DRDi68uQK5aXzHna14s',
+                  '1Gdp$l43ehsjNt$V8ijmNo',
+                ]
+              })
               __g.camera.playAnimation(9);
-            } else if (this.sleepIndex === 134) {
-              __g.infoTree.hide([
-                'F6ABC22442B91B5EF7C740BAE23991BA',//商场模型
-                'FBE4932F4A31B2BEE5955B835E017551',//结构模型
-                '2FBB0F894CFD2ECF697760A7DCA61969',//项目模型
-                '349280C44403CF4FA47257999931BEF5',//工程走向
-              ])
-              __g.infoTree.show([
-                '9561C9FE4B3F953060DA20993729C110',//在建
-                'F762F9024430C36142D448BDFAF4B0FF',//倾斜摄影
-                '26A2E41640223B909F3EAF8C3E11880C',
-                '3D7E4151485286E3184AF0A15B35C988',
-                '3D378F6140734B6EA6DA10AF135E47C5',
-                'F1085241443B54131403E6B50778A59B',
-              ])
-              await this.playVideo()
             }
           } else {
             return 0
@@ -298,46 +281,6 @@ export default {
 
   .explain-auto-audio {
     opacity: 0;
-  }
-}
-
-.videoPlay {
-  width: 1400px;
-  height: 817px;
-  position: absolute;
-  left: 260px;
-  top: 160px;
-  z-index: 9;
-  border-radius: 20px;
-
-  .videoBox {
-    width: 1400px;
-    height: 30px;
-    background-color: #1568be;
-    border-radius: 5px 5px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    .icon {
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #a5a9ae;
-    }
-
-    .icon:hover {
-      border-radius: 0 5px 0 0;
-      background-color: #c71e1e;
-      color: #FFFFFF;
-    }
-  }
-
-  video {
-    width: 1400px;
-    height: 787px;
   }
 }
 </style>

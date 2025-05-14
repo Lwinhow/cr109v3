@@ -12,6 +12,17 @@
       <content-panle-scenario v-if="$route.query.page==='scenario'" ref="scenario"></content-panle-scenario>
       <explain-auto></explain-auto>
     </div>
+    <div v-if="videoFlag" class="videoBody">
+      <div class="title">
+        <span>{{ title }}</span>
+        <div class="icon" @click="closeVideo">
+          <i class="el-icon-close"></i>
+        </div>
+      </div>
+      <div class="video">
+        <hls-video :hkwsCode="hkwsUrl"></hls-video>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,15 +35,29 @@ import ContentPanleDigital from "@/views/screen/view/ContentPanleDigital.vue";
 import ContentPanleAlarm from "@/views/screen/view/ContentPanleAlarm.vue";
 import ContentPanleScenario from "@/views/screen/view/ContentPanleScenario.vue";
 import ExplainAuto from "@/components/ExplainAuto.vue";
+import HlsVideo from "@/components/HlsVideo.vue";
+import {getCameraUrl} from "@/apis/getData";
+import {markerCamera} from "@/utils/marker";
 
 export default {
   name: "Screen",
-  components: {ExplainAuto, ContentPanleScenario, ContentPanleAlarm, ContentPanleDigital, HeadMenu, HeadPanle},
+  components: {
+    HlsVideo,
+    ExplainAuto,
+    ContentPanleScenario,
+    ContentPanleAlarm,
+    ContentPanleDigital,
+    HeadMenu,
+    HeadPanle
+  },
   data() {
     return {
       instanceId: config[process.env.NODE_ENV].playerExampleId, //实例id
       addPlaneClip: false,
       flag: false,
+      hkwsUrl: null,
+      title: null,
+      videoFlag: false
     };
   },
   mounted() {
@@ -45,6 +70,20 @@ export default {
     this.initPlayer();
   },
   methods: {
+    _getHkwsUrl(id) {
+      getCameraUrl({
+        stream: id
+      }).then(res => {
+        if (res) {
+          this.hkwsUrl = res.url
+        }
+      }).catch(err => {
+      })
+    },
+    closeVideo() {
+      this.hkwsUrl = null
+      this.videoFlag = false
+    },
     planeClip() {
       this.addPlaneClip = true
     },
@@ -125,12 +164,19 @@ export default {
         let userData = event.UserData;
         let objectLocation = event.MouseClickPoint; //当前点击位置
         console.log(objectLocation)
-        console.log(userData)
         switch (eventType) {
           case "LeftMouseButtonClick": // 鼠标左键点击时触发方法
             if (this.addPlaneClip) {
               this.addPlaneClip = false
               await this.planeClip_event(objectLocation[0], objectLocation[1], objectLocation[2]);
+              break;
+            }
+            if (type === 'marker' && userData) {
+              if (markerCamera[userData].id) {
+                this.title = markerCamera[userData].name
+                this.videoFlag = true
+                this._getHkwsUrl(markerCamera[userData].id)
+              }
               break;
             }
             break;
@@ -184,6 +230,53 @@ export default {
 #player {
   width: 100%;
   height: 100%;
+}
+
+.videoBody {
+  position: fixed;
+  padding: 5px 15px 15px 15px;
+  z-index: 1000;
+  left: 555px;
+  top: 280px;
+  background-image: radial-gradient(circle at 50% 2.8%, #2E5C88 0%, rgba(33, 65, 97, 0.85) 56%, rgba(33, 49, 70, 0.95) 107%);
+  border-radius: 8px;
+  width: 800px;
+  height: 650px;
+
+  .title {
+    width: 100%;
+    height: 30px;
+    color: #FFFFFF;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      line-height: 30px;
+      letter-spacing: 2px;
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #a5a9ae;
+    }
+
+    .icon:hover {
+      border-radius: 0 5px 0 0;
+      background-color: #c71e1e;
+      color: #FFFFFF;
+    }
+  }
+
+  .video {
+    width: 100%;
+    height: 600px;
+  }
 }
 </style>
 <style lang="scss">
