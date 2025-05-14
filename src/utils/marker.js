@@ -131,14 +131,14 @@ export const markerCamera = [
         cood: [-1311728.32, 157455.17, 15.00375],
         name: 'LP1',
         image: 'm001.png',
-        id: null,
+        id: 901,
         color: '#60e72b'
     },
     {
         cood: [-1311659.04, 157562.94, 14.672656250000001],
         name: 'LP4',
         image: 'm001.png',
-        id: null,
+        id: 501,
         color: '#60e72b'
     },
     {
