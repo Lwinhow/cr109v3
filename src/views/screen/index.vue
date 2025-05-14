@@ -186,6 +186,8 @@ export default {
               }
               if (markerCamera[userData].camera) {
                 __g.camera.set(markerCamera[userData].camera)
+              } else {
+                __g.marker.focus(id)
               }
               break;
             }
