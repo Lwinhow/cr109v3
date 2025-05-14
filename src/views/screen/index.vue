@@ -131,6 +131,11 @@ export default {
           'FBE4932F4A31B2BEE5955B835E017551',//结构模型
           '2FBB0F894CFD2ECF697760A7DCA61969',//项目模型
           '349280C44403CF4FA47257999931BEF5',//工程走向
+          'C010BA13489E0704A9415B8B10B9671B',
+          'F0CD9D044374CF7D5CE36A9EF14A61E5',
+          '32861C9A4457CC78A01B3E8BEC224D76',
+          '6433422F4DEC29AE77FE98BD968309AA',
+          'C384DB1C41C1AD0E2219D68BA931D25E',
         ])
         __g.infoTree.show([
           '9561C9FE4B3F953060DA20993729C110',//在建
@@ -152,6 +157,7 @@ export default {
           objectIds: [
             '1b2LVM2n49_sCqbWJHFhS$',
             '0mtLUR_lqO6dSzIpY61rEU',
+            '0QePe94mzzuzNlBJbwzKEi'
           ]
         })
       };
