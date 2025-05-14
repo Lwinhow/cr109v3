@@ -1,0 +1,52 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin scrollBar {
+  &::-webkit-scrollbar-track-piece {
+    background: #d3dce6;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #99a9bf;
+    border-radius: 20px;
+  }
+}
+
+@mixin relative {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin border {
+  border: 1px solid #DCDFE6;
+}
+
+@mixin border-error {
+  border: 1px solid #F56C6C;
+}
+
+@mixin title-color {
+  color: #606266;
+}
+
+@mixin content-color {
+  color: #5e6d82;
+}
+
+@mixin tips-color {
+  color: #F56C6C;
+}
+
+@mixin color-blue {
+  color: #409EFF;
+}

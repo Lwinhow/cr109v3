@@ -1,0 +1,93 @@
+{
+  "id": "4123357",
+  "name": "轨道大屏",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3553",
+      "name": "客服优先",
+      "font_class": "kefuyouxian",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "5650962",
+      "name": "指挥通信",
+      "font_class": "zhihuitongxin",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
+      "icon_id": "11859279",
+      "name": "消防",
+      "font_class": "xiaofang",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "18164959",
+      "name": "报警,警报,报警灯,危险",
+      "font_class": "alarm-full",
+      "unicode": "e871",
+      "unicode_decimal": 59505
+    },
+    {
+      "icon_id": "18368458",
+      "name": "安防报警  面",
+      "font_class": "anfangbaojingmian",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
+    },
+    {
+      "icon_id": "34392811",
+      "name": "环境调控",
+      "font_class": "huanjingtiaokong",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "8177225",
+      "name": "摄像头",
+      "font_class": "shexiangtou1",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "13510683",
+      "name": "面-坐标",
+      "font_class": "mian-zuobiao",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "19984837",
+      "name": "温度",
+      "font_class": "wendu",
+      "unicode": "e79f",
+      "unicode_decimal": 59295
+    },
+    {
+      "icon_id": "22613459",
+      "name": "风速",
+      "font_class": "fengsu",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "25716508",
+      "name": "空气湿度",
+      "font_class": "kongqishidu",
+      "unicode": "ea33",
+      "unicode_decimal": 59955
+    },
+    {
+      "icon_id": "25716511",
+      "name": "降雨量",
+      "font_class": "jiangyuliang",
+      "unicode": "ea32",
+      "unicode_decimal": 59954
+    }
+  ]
+}
