@@ -41,15 +41,16 @@ export default {
       WebVideoCtrl.I_Login(szIP, szProtoType, szPort, szUsername, szPassword, {
         timeout: 3000,
         success: function (xmlDoc) {
-          setTimeout(function () {
-            setTimeout(function () {
-              getChannelInfo();
-            }, 1000);
-            this.getDevicePort();
-          }, 10);
+          // setTimeout(function () {
+          //   setTimeout(function () {
+          //     getChannelInfo();
+          //   }, 1000);
+          //   this.getDevicePort();
+          // }, 10);
+          console.log(3)
         },
         error: function (oError) {
-          console.log(oError)
+          console.log(1,oError)
         }
       });
     },
@@ -178,7 +179,7 @@ export default {
   },
   mounted() {
     this.clickLogin(1)
-    this.clickStartRealPlay(1)
+    // this.clickStartRealPlay(1)
   },
   created() {
   }
