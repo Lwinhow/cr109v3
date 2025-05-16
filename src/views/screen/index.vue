@@ -42,7 +42,6 @@ import HlsVideo from "@/components/HlsVideo.vue";
 import {markerCamera} from "@/utils/marker";
 import HkvsBox from "@/components/hkwsBox.vue";
 import {getCameraAll} from "@/apis/getData";
-import {initPlugin} from "../../../public/demo";
 
 export default {
   name: "Screen",
@@ -61,7 +60,6 @@ export default {
       instanceId: config[process.env.NODE_ENV].playerExampleId, //实例id
       addPlaneClip: false,
       flag: false,
-      hkwsObj: null,
       title: null,
       videoFlag: false,
       hkwsArr: [],
@@ -187,9 +185,42 @@ export default {
         }
       });
     },
+    clickStartRealPlay(iStreamType, ip) {
+      const index = this.hkwsArr.findIndex(item => item.ip === ip);
+      let _this = this
+      let oWndInfo = WebVideoCtrl.I_GetWindowStatus(0),
+          szDeviceIdentify = _this.hkwsIp + "_80",
+          iRtspPort = parseInt(_this.hkwsArr[index].rtspport, 10),
+          iChannelID = parseInt(_this.hkwsArr[index].channels[0].id, 10),
+          bZeroChannel = false
+
+      let startRealPlay = function () {
+        WebVideoCtrl.I_StartRealPlay(szDeviceIdentify, {
+          iStreamType: iStreamType,
+          iChannelID: iChannelID,
+          bZeroChannel: bZeroChannel,
+          iPort: iRtspPort,
+          success: function () {
+            console.log(1);
+          },
+          error: function (oError) {
+            console.log(2);
+          }
+        });
+      };
+
+      if (oWndInfo != null) {// 已经在播放了，先停止
+        WebVideoCtrl.I_Stop({
+          success: function () {
+            startRealPlay();
+          }
+        });
+      } else {
+        startRealPlay();
+      }
+    },
 
     closeVideo() {
-      this.hkwsObj = null
       this.videoFlag = false
     },
     planeClip() {
@@ -288,9 +319,10 @@ export default {
               break;
             }
             if (type === 'marker' && userData) {
-              if (markerCamera[userData].id) {
+              if (markerCamera[userData].ip) {
                 this.title = markerCamera[userData].name
                 this.videoFlag = true
+                this.clickStartRealPlay(1, markerCamera[userData].ip)
               }
               if (markerCamera[userData].camera) {
                 __g.camera.set(markerCamera[userData].camera)
