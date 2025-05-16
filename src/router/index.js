@@ -14,6 +14,11 @@ const routes = [
         name: "Video",
         component: () => import("@/components/HlsVideo.vue"),
     },
+    {
+        path: "/plugin",
+        name: "Plugin",
+        component: () => import("@/components/divPlugin.vue"),
+    },
 ]
 
 const router = new VueRouter({
