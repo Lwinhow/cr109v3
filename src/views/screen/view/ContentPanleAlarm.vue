@@ -85,19 +85,19 @@
         <div class="alarm-video">
           <div class="title">
             <span class="span1"></span>
-            <el-select v-model="stream" class="panle-public-select" placeholder="请选择" popper-class="mySelectStyle"
+            <el-select v-model="hkwsIndex" class="panle-public-select" placeholder="请选择" popper-class="mySelectStyle"
                        style="width: 200px">
               <el-option
-                  v-for="item in hkwsArr"
-                  :key="item.stream"
-                  :label="item.name"
-                  :value="item.stream"
+                  v-for="(item,index) in hkwsArr"
+                  :key="item.ip"
+                  :label="item.devieName"
+                  :value=index
               >
               </el-option>
             </el-select>
           </div>
           <div class="video">
-            <hls-video :hkwsCode="hkwsUrl"></hls-video>
+            <hkvs-box :hkwsObj="hkwsObj"></hkvs-box>
           </div>
         </div>
       </panle-box>
@@ -210,33 +210,41 @@ import CommonDialog from "@/components/CommonDialog.vue";
 import ContentLineTbox from "@/components/ContentLineTbox.vue";
 import {
   getAlarmRecord,
-  getAttendanceList, getCameraAll, getCameraUrl,
+  getAttendanceList,
   getDeviceOnline,
   getGasreCord,
   getPersionStat
 } from "@/apis/getData";
 import HlsVideo from "@/components/HlsVideo.vue";
 import {addMarkerCamera} from "@/utils/marker";
+import HkvsBox from "@/components/hkvsBox.vue";
 
 export default {
   name: "ContentPanleAlarm",
-  components: {HlsVideo, ContentLineTbox, CommonDialog, PanleBox},
+  components: {HkvsBox, HlsVideo, ContentLineTbox, CommonDialog, PanleBox},
   watch: {
-    stream: {
+    hkwsIndex: {
       handler: function (newVal, oldVal) {
         if (newVal) {
-          this._getHkwsUrl()
+          if (this.hkwsArr.length > 0) {
+            this.clickStartRealPlay(1)
+          }
         }
       },
       deep: true,
       immediate: true
+    },
+  },
+  props: {
+    hkwsArr: {
+      type: Array,
+      default: []
     }
   },
   data() {
     return {
-      stream: null,
-      hkwsArr: [],
-      hkwsUrl: '',
+      hkwsIndex: 0,
+      hkwsObj: null,
 
       keyLine: 0, //刷新图表的key
       environmentData: {}, //折线图类型
@@ -424,10 +432,12 @@ export default {
     this.deviceOnlineChart = echarts.init(lineDom);
     this._getDeviceOnline()
     this._getAlarmRecord()
-    this._getHkwsArr()
     this._getPersionStat()
     this._getAttendanceList()
     this._getGasreCord()
+    if (this.hkwsArr.length > 0) {
+      this.hkwsIp = this.hkwsArr[0].ip
+    }
   },
   destroyed() {
     clearTimeout(this.hjjcDataTimer);
@@ -443,6 +453,40 @@ export default {
     __g.marker.clear()
   },
   methods: {
+    clickStartRealPlay(iStreamType) {
+      let _this = this
+      let oWndInfo = WebVideoCtrl.I_GetWindowStatus(g_iWndIndex),
+          szDeviceIdentify = _this.hkwsArr[_this.hkwsIndex].ip + "_80",
+          iRtspPort = parseInt(_this.hkwsArr[_this.hkwsIndex].rtspport, 10),
+          iChannelID = parseInt(_this.hkwsArr[_this.hkwsIndex].channels[0].id, 10),
+          bZeroChannel = false
+
+      let startRealPlay = function () {
+        WebVideoCtrl.I_StartRealPlay(szDeviceIdentify, {
+          iStreamType: iStreamType,
+          iChannelID: iChannelID,
+          bZeroChannel: bZeroChannel,
+          iPort: iRtspPort,
+          success: function () {
+            console.log(1);
+          },
+          error: function (oError) {
+            console.log(2);
+          }
+        });
+      };
+
+      if (oWndInfo != null) {// 已经在播放了，先停止
+        WebVideoCtrl.I_Stop({
+          success: function () {
+            startRealPlay();
+          }
+        });
+      } else {
+        startRealPlay();
+      }
+    },
+
     closeAllDialog() {
       this.lineTboxShow = false; //环境感知折线图弹窗
     },
@@ -663,25 +707,6 @@ export default {
         this.alarmArrTimer = setTimeout(() => {
           this._getAlarmRecord();
         }, 5 * 1000)
-      })
-    },
-    _getHkwsArr() {
-      getCameraAll().then(res => {
-        if (res) {
-          this.hkwsArr = res
-          this.stream = this.hkwsArr[0].stream
-        }
-      }).catch(err => {
-      })
-    },
-    _getHkwsUrl() {
-      getCameraUrl({
-        stream: this.stream
-      }).then(res => {
-        if (res) {
-          this.hkwsUrl = res.url
-        }
-      }).catch(err => {
       })
     },
     _getPersionStat() {

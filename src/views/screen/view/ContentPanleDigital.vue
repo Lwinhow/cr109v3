@@ -40,18 +40,19 @@
         <div class="digital-video">
           <div class="title">
             <span class="span1"></span>
-            <el-select v-model="stream" class="panle-public-select" placeholder="请选择" popper-class="mySelectStyle"
+            <el-select v-model="hkwsIndex" class="panle-public-select" placeholder="请选择" popper-class="mySelectStyle"
                        style="width: 200px">
               <el-option
-                  v-for="item in hkwsArr"
-                  :key="item.stream"
-                  :label="item.name"
-                  :value="item.stream">
+                  v-for="(item,index) in hkwsArr"
+                  :key="item.ip"
+                  :label="item.devieName"
+                  :value=index
+              >
               </el-option>
             </el-select>
           </div>
           <div class="video">
-            <hls-video :hkwsCode="hkwsUrl"></hls-video>
+            <hkvs-box :hkwsObj="hkwsObj"></hkvs-box>
           </div>
         </div>
       </panle-box>
@@ -204,27 +205,30 @@ import BottomPanle from "@/views/screen/view/BottomPanle.vue";
 import PanleFileTbox from "@/components/PanleFileTbox.vue";
 import HlsVideo from "@/components/HlsVideo.vue";
 import {
-  getCameraAll,
-  getCameraUrl, getDisposalRate, getPTWlist, getPTWReview, getPTWWorkflow,
+  getDisposalRate, getPTWlist, getPTWReview, getPTWWorkflow,
   getPWTStatus,
   getPWTType,
   getTBMlist, getTBMPReview,
   getTBMWorkflow,
 } from "@/apis/getData";
 import axios from "axios";
+import HkvsBox from "@/components/hkvsBox.vue";
 
 export default {
   components: {
+    HkvsBox,
     HlsVideo,
     PanleFileTbox,
     BottomPanle,
     PanleBox
   },
   watch: {
-    stream: {
+    hkwsIndex: {
       handler: function (newVal, oldVal) {
         if (newVal) {
-          this._getHkwsUrl()
+          if (this.hkwsArr.length > 0) {
+            this.clickStartRealPlay(1)
+          }
         }
       },
       deep: true,
@@ -248,6 +252,12 @@ export default {
       deep: true,
       immediate: true
     },
+  },
+  props: {
+    hkwsArr: {
+      type: Array,
+      default: []
+    }
   },
   data() {
     return {
@@ -355,9 +365,8 @@ export default {
         }
       ],
 
-      stream: null,
-      hkwsArr: [],
-      hkwsUrl: '',
+      hkwsIndex: 0,
+      hkwsObj: null,
 
       PWTStatus: {
         day: [],
@@ -396,8 +405,10 @@ export default {
     this._progressChart()
     this._progressChart2()
     this.intervalId = setInterval(this.changeChart, 10000);
-    this._getHkwsArr()
     this.fetchWeatherData1()
+    if (this.hkwsArr.length > 0) {
+      this.hkwsIp = this.hkwsArr[0].ip
+    }
   },
   beforeDestroy() {
     if (this.intervalId) {
@@ -406,6 +417,40 @@ export default {
     }
   },
   methods: {
+    clickStartRealPlay(iStreamType) {
+      let _this = this
+      let oWndInfo = WebVideoCtrl.I_GetWindowStatus(g_iWndIndex),
+          szDeviceIdentify = _this.hkwsArr[_this.hkwsIndex].ip + "_80",
+          iRtspPort = parseInt(_this.hkwsArr[_this.hkwsIndex].rtspport, 10),
+          iChannelID = parseInt(_this.hkwsArr[_this.hkwsIndex].channels[0].id, 10),
+          bZeroChannel = false
+
+      let startRealPlay = function () {
+        WebVideoCtrl.I_StartRealPlay(szDeviceIdentify, {
+          iStreamType: iStreamType,
+          iChannelID: iChannelID,
+          bZeroChannel: bZeroChannel,
+          iPort: iRtspPort,
+          success: function () {
+            console.log(1);
+          },
+          error: function (oError) {
+            console.log(2);
+          }
+        });
+      };
+
+      if (oWndInfo != null) {// 已经在播放了，先停止
+        WebVideoCtrl.I_Stop({
+          success: function () {
+            startRealPlay();
+          }
+        });
+      } else {
+        startRealPlay();
+      }
+    },
+
     changeChart() {
       if (this.chart_flag) {
         this._progressChart2()
@@ -777,26 +822,6 @@ export default {
       } catch (error) {
         return false
       }
-    },
-
-    _getHkwsArr() {
-      getCameraAll().then(res => {
-        if (res) {
-          this.hkwsArr = res
-          this.stream = this.hkwsArr[0].stream
-        }
-      }).catch(err => {
-      })
-    },
-    _getHkwsUrl() {
-      getCameraUrl({
-        stream: this.stream
-      }).then(res => {
-        if (res) {
-          this.hkwsUrl = res.url
-        }
-      }).catch(err => {
-      })
     },
 
     _getPWTStatus(params) {

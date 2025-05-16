@@ -44,15 +44,12 @@ export default {
           setTimeout(function () {
             setTimeout(function () {
               _this.getChannelInfo();
-              console.log(11)
             }, 1000);
             _this.getDevicePort();
-            console.log(22)
           }, 10);
-          console.log(3)
         },
         error: function (oError) {
-          console.log(1, oError)
+          console.log('oError', oError)
         }
       });
     },

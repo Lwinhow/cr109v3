@@ -83,19 +83,7 @@ export function getGasrecordline(params) {
 // 监控地址
 export function getCameraAll(params) {
     return request({
-        url: '/camera/all',
-        method: 'get',
-        params
-    })
-}
-
-// 监控播放地址
-/*
-stream=xxx
-*/
-export function getCameraUrl(params) {
-    return request({
-        url: '/camera/url',
+        url: '/camera/all/v2',
         method: 'get',
         params
     })
