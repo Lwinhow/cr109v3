@@ -12,10 +12,10 @@ export default {
   name: 'divPlugin',
   data() {
     return {
-      loginIp: '10.5.4.211',
-      port: '554',
+      loginIp: '192.168.10.119',
+      port: '80',
       username: 'admin',
-      password: 'P@ssw0rd',
+      password: 'light12345',
       ip: "",
       deviceport: null,
       rtspport: null,
@@ -37,93 +37,48 @@ export default {
           szPassword = this.password
 
       this.ip = szIP + "_" + szPort
-
+      let _this = this
       WebVideoCtrl.I_Login(szIP, szProtoType, szPort, szUsername, szPassword, {
         timeout: 3000,
         success: function (xmlDoc) {
-          // setTimeout(function () {
-          //   setTimeout(function () {
-          //     getChannelInfo();
-          //   }, 1000);
-          //   this.getDevicePort();
-          // }, 10);
+          setTimeout(function () {
+            setTimeout(function () {
+              _this.getChannelInfo();
+              console.log(11)
+            }, 1000);
+            _this.getDevicePort();
+            console.log(22)
+          }, 10);
           console.log(3)
         },
         error: function (oError) {
-          console.log(1,oError)
+          console.log(1, oError)
         }
       });
     },
     getChannelInfo() {
-      let szDeviceIdentify = this.ip,
-          oSel = this.channels = []
+      let _this = this
+      let szDeviceIdentify = this.ip
 
       // 模拟通道
       WebVideoCtrl.I_GetAnalogChannelInfo(szDeviceIdentify, {
         success: function (xmlDoc) {
+          console.log(xmlDoc, 111)
           let oChannels = $(xmlDoc).find("VideoInputChannel");
 
           for (let i = 0; i < oChannels.length; i++) {
             let id = $(oChannels[i]).find("id").eq(0).text(),
                 name = $(oChannels[i]).find("name").eq(0).text();
-            if ("" == name) {
+            if ("" === name) {
               name = "Camera " + (i < 9 ? "0" + (i + 1) : (i + 1));
             }
-            oSel.push({
+            _this.channels.push({
               id: id,
               name: name,
               bZero: false
             })
           }
-        },
-        error: function (oError) {
-          console.log(oError)
-        }
-      });
-      // 数字通道
-      WebVideoCtrl.I_GetDigitalChannelInfo(szDeviceIdentify, {
-        success: function (xmlDoc) {
-          let oChannels = $(xmlDoc).find("InputProxyChannelStatus");
-
-          for (let i = 0; i < oChannels.length; i++) {
-            let id = $(oChannels[i]).find("id").eq(0).text(),
-                name = $(oChannels[i]).find("name").eq(0).text(),
-                online = $(oChannels[i]).find("online").eq(0).text();
-            if ("false" == online) { // 过滤禁用的数字通道
-              continue;
-            }
-            if ("" == name) {
-              name = "IPCamera " + (i < 9 ? "0" + (i + 1) : (i + 1));
-            }
-            oSel.push({
-              id: id,
-              name: name,
-              bZero: false
-            })
-          }
-        },
-        error: function (oError) {
-          console.log(oError)
-        }
-      });
-      // 零通道
-      WebVideoCtrl.I_GetZeroChannelInfo(szDeviceIdentify, {
-        success: function (xmlDoc) {
-          let oChannels = $(xmlDoc).find("ZeroVideoChannel");
-
-          for (let i = 0; i < oChannels.length; i++) {
-            let id = $(oChannels[i]).find("id").eq(0).text(),
-                name = $(oChannels[i]).find("name").eq(0).text();
-            if ("" == name) {
-              name = "Camera " + (i < 9 ? "0" + (i + 1) : (i + 1));
-            }
-            oSel.push({
-              id: id,
-              name: name,
-              bZero: false
-            })
-          }
-
+          console.log(_this.channels)
         },
         error: function (oError) {
           console.log(oError)
@@ -131,21 +86,25 @@ export default {
       });
     },
     getDevicePort() {
-      let szDeviceIdentify = this.ip
-      let oPort = WebVideoCtrl.I_GetDevicePort(szDeviceIdentify).then((oPort) => {
+      console.log(4, this.ip)
+      let oPort = WebVideoCtrl.I_GetDevicePort(this.ip).then((oPort) => {
         this.deviceport = oPort.iDevicePort
         this.rtspport = oPort.iRtspPort
+        console.log(this.deviceport, this.rtspport)
       }, (oError) => {
         console.log(oError)
       });
+
     },
     clickStartRealPlay(iStreamType) {
+      let _this = this
       let oWndInfo = WebVideoCtrl.I_GetWindowStatus(g_iWndIndex),
-          szDeviceIdentify = this.ip,
-          iRtspPort = parseInt(this.rtspport, 10),
-          iChannelID = parseInt(this.channels, 10),
-          bZeroChannel = this.getBZeroChannel(),
+          szDeviceIdentify = _this.ip,
+          iRtspPort = parseInt(_this.rtspport, 10),
+          iChannelID = parseInt(_this.channels[0].id, 10),
+          bZeroChannel = _this.getBZeroChannel(),
           szInfo = "";
+      console.log(oWndInfo, szDeviceIdentify, iRtspPort, iChannelID, bZeroChannel)
 
       if ("undefined" === typeof iStreamType) {
         iStreamType = 1
