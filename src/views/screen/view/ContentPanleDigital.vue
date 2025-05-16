@@ -38,6 +38,9 @@
     <div class="content-panle-right">
       <panle-box box-height="260px" title="Overview Video">
         <div class="digital-video">
+          <div class="video">
+            <hkvs-box></hkvs-box>
+          </div>
           <div class="title">
             <span class="span1"></span>
             <el-select v-model="hkwsIp" class="panle-public-select" placeholder="请选择" popper-class="mySelectStyle"
@@ -50,9 +53,6 @@
               >
               </el-option>
             </el-select>
-          </div>
-          <div class="video">
-            <hkvs-box></hkvs-box>
           </div>
         </div>
       </panle-box>
