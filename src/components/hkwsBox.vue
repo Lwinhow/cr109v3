@@ -1,22 +1,31 @@
 <template>
-  <div id='hkvsBox'>
+  <div id='hkwsBox'>
+    <div id='divPlugin' class="plugin"></div>
   </div>
 </template>
 <script>
 /* eslint-disable */
+import {initPlugin} from "../../public/demo";
+
 export default {
-  name: 'hkvsBox',
+  name: 'hkwsBoxc',
   data() {
     return {}
   },
   methods: {},
   mounted() {
+    initPlugin()
   },
   created() {
   }
 }
 </script>
 <style lang="scss" scoped>
+.plugin{
+  width: 270px;
+  height: 150px;
+  border: 0;
+}
 </style>
 <style lang="scss">
 </style>

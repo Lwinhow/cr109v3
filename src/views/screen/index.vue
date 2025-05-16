@@ -2,13 +2,16 @@
   <div id="content">
     <!-- 视频流 -->
     <div id="player"></div>
-    <div v-if="flag">
+    <div>
       <!--  公共配置  -->
       <head-panle></head-panle>
       <head-menu></head-menu>
       <!--页面-->
-      <content-panle-digital v-if="!$route.query.page" :hkwsArr="hkwsArr"></content-panle-digital>
-      <content-panle-alarm v-if="$route.query.page==='alarm'" :hkwsArr="hkwsArr"></content-panle-alarm>
+      <content-panle-digital v-if="!$route.query.page" :hkwsArr="hkwsArr" :hkwsFlag1="hkwsFlag1"
+                             :hkwsFlag2="hkwsFlag2"></content-panle-digital>
+      <content-panle-alarm v-if="$route.query.page==='alarm'" :hkwsArr="hkwsArr"
+                           :hkwsFlag1="hkwsFlag1"
+                           :hkwsFlag2="hkwsFlag2"></content-panle-alarm>
       <content-panle-scenario v-if="$route.query.page==='scenario'" ref="scenario"></content-panle-scenario>
       <explain-auto></explain-auto>
     </div>
@@ -20,7 +23,7 @@
         </div>
       </div>
       <div class="video">
-        <hkvs-box :hkwsObj="hkwsObj"></hkvs-box>
+        <hkvs-box></hkvs-box>
       </div>
     </div>
   </div>
@@ -37,8 +40,9 @@ import ContentPanleScenario from "@/views/screen/view/ContentPanleScenario.vue";
 import ExplainAuto from "@/components/ExplainAuto.vue";
 import HlsVideo from "@/components/HlsVideo.vue";
 import {markerCamera} from "@/utils/marker";
-import HkvsBox from "@/components/hkvsBox.vue";
+import HkvsBox from "@/components/hkwsBox.vue";
 import {getCameraAll} from "@/apis/getData";
+import {initPlugin} from "../../../public/demo";
 
 export default {
   name: "Screen",
@@ -61,10 +65,11 @@ export default {
       title: null,
       videoFlag: false,
       hkwsArr: [],
+      hkwsFlag1: false,
+      hkwsFlag2: false
     };
   },
   mounted() {
-    this._getCameraAll()
     // 缩放
     this.screenTransform();
     window.addEventListener('resize', () => {
@@ -111,16 +116,40 @@ export default {
       let oPort = WebVideoCtrl.I_GetDevicePort(szDeviceIdentify).then((oPort) => {
         this.hkwsArr[i].deviceport = oPort.iDevicePort
         this.hkwsArr[i].rtspport = oPort.iRtspPort
+        this.hkwsFlag2 = true
       }, (oError) => {
         console.log(oError)
       });
     },
-    getChannelInfo(szDeviceIdentify, i) {
+    getChannelInfo(szDeviceIdentify, j) {
       let _this = this
+      _this.hkwsArr[j].channels = []
       // 模拟通道
       WebVideoCtrl.I_GetAnalogChannelInfo(szDeviceIdentify, {
         success: function (xmlDoc) {
           let oChannels = $(xmlDoc).find("VideoInputChannel");
+          for (let i = 0; i < oChannels.length; i++) {
+            let id = $(oChannels[i]).find("id").eq(0).text(),
+                name = $(oChannels[i]).find("name").eq(0).text();
+            if ("" === name) {
+              name = "Camera " + (i < 9 ? "0" + (i + 1) : (i + 1));
+            }
+            _this.hkwsArr[j].channels.push({
+              id: id,
+              name: name,
+              bZero: false
+            })
+          }
+          _this.hkwsFlag1 = true
+        },
+        error: function (oError) {
+          console.log(oError)
+        }
+      });
+
+      WebVideoCtrl.I_GetDigitalChannelInfo(szDeviceIdentify, {
+        success: function (xmlDoc) {
+          let oChannels = $(xmlDoc).find("InputProxyChannelStatus");
           for (let i = 0; i < oChannels.length; i++) {
             let id = $(oChannels[i]).find("id").eq(0).text(),
                 name = $(oChannels[i]).find("name").eq(0).text();
@@ -135,7 +164,26 @@ export default {
           }
         },
         error: function (oError) {
-          console.log(oError)
+        }
+      });
+      // 零通道
+      WebVideoCtrl.I_GetZeroChannelInfo(szDeviceIdentify, {
+        success: function (xmlDoc) {
+          let oChannels = $(xmlDoc).find("ZeroVideoChannel");
+          for (let i = 0; i < oChannels.length; i++) {
+            let id = $(oChannels[i]).find("id").eq(0).text(),
+                name = $(oChannels[i]).find("name").eq(0).text();
+            if ("" === name) {
+              name = "Camera " + (i < 9 ? "0" + (i + 1) : (i + 1));
+            }
+            _this.hkwsArr[i].channels.push({
+              id: id,
+              name: name,
+              bZero: false
+            })
+          }
+        },
+        error: function (oError) {
         }
       });
     },
@@ -220,6 +268,7 @@ export default {
             '0QePe94mzzuzNlBJbwzKEi'
           ]
         })
+        this._getCameraAll()
       };
       let _onEvent = async (event) => {
         console.log(event)

@@ -26,7 +26,7 @@ var ERROR_CODE_PLAY_NOFREESPACE = 3004; //录像过程中，硬盘容量不足
 var ERROR_CODE_TALK_FAIL = 5000; //语音对讲失败
 
 var version = "V3.3.0build20230322"
-$(function () {
+export const initPlugin = () => {
     // 初始化插件参数及插入插件
     WebVideoCtrl.I_InitPlugin({
         bWndFull: true,     //是否支持单窗口双击全屏，默认支持 true:支持 false:不支持
@@ -82,7 +82,7 @@ $(function () {
     $("#endtime").val(szCurTime + " 23:59:59");
     $("#downloadstarttime").val(szCurTime + " 00:00:00");
     $("#downloadendtime").val(szCurTime + " 23:59:59");
-});
+};
 
 // 显示操作信息
 function showOPInfo(szInfo, status, xmlDoc) {

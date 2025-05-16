@@ -85,19 +85,19 @@
         <div class="alarm-video">
           <div class="title">
             <span class="span1"></span>
-            <el-select v-model="hkwsIndex" class="panle-public-select" placeholder="请选择" popper-class="mySelectStyle"
-                       style="width: 200px">
+            <el-select v-model="hkwsIp" class="panle-public-select" placeholder="请选择" popper-class="mySelectStyle"
+                       style="width: 200px" @change="playhkws()">
               <el-option
-                  v-for="(item,index) in hkwsArr"
+                  v-for="item in hkwsArr"
                   :key="item.ip"
                   :label="item.devieName"
-                  :value=index
+                  :value="item.ip"
               >
               </el-option>
             </el-select>
           </div>
           <div class="video">
-            <hkvs-box :hkwsObj="hkwsObj"></hkvs-box>
+            <hkvs-box></hkvs-box>
           </div>
         </div>
       </panle-box>
@@ -217,34 +217,29 @@ import {
 } from "@/apis/getData";
 import HlsVideo from "@/components/HlsVideo.vue";
 import {addMarkerCamera} from "@/utils/marker";
-import HkvsBox from "@/components/hkvsBox.vue";
+import HkvsBox from "@/components/hkwsBox.vue";
 
 export default {
   name: "ContentPanleAlarm",
   components: {HkvsBox, HlsVideo, ContentLineTbox, CommonDialog, PanleBox},
-  watch: {
-    hkwsIndex: {
-      handler: function (newVal, oldVal) {
-        if (newVal) {
-          if (this.hkwsArr.length > 0) {
-            this.clickStartRealPlay(1)
-          }
-        }
-      },
-      deep: true,
-      immediate: true
-    },
-  },
+  watch: {},
   props: {
     hkwsArr: {
       type: Array,
       default: []
+    },
+    hkwsFlag1: {
+      type: Boolean,
+      default: false
+    },
+    hkwsFlag2: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      hkwsIndex: 0,
-      hkwsObj: null,
+      hkwsIp: null,
 
       keyLine: 0, //刷新图表的key
       environmentData: {}, //折线图类型
@@ -453,12 +448,20 @@ export default {
     __g.marker.clear()
   },
   methods: {
+    playhkws() {
+      console.log(this.hkwsArr)
+      console.log(this.hkwsFlag1, this.hkwsFlag2)
+      if (this.hkwsArr.length > 0 && this.hkwsFlag1 && this.hkwsFlag2) {
+        this.clickStartRealPlay(1)
+      }
+    },
     clickStartRealPlay(iStreamType) {
+      const index = this.hkwsArr.findIndex(item => item.ip === this.hkwsIp);
       let _this = this
-      let oWndInfo = WebVideoCtrl.I_GetWindowStatus(g_iWndIndex),
-          szDeviceIdentify = _this.hkwsArr[_this.hkwsIndex].ip + "_80",
-          iRtspPort = parseInt(_this.hkwsArr[_this.hkwsIndex].rtspport, 10),
-          iChannelID = parseInt(_this.hkwsArr[_this.hkwsIndex].channels[0].id, 10),
+      let oWndInfo = WebVideoCtrl.I_GetWindowStatus(0),
+          szDeviceIdentify = _this.hkwsIp + "_80",
+          iRtspPort = parseInt(_this.hkwsArr[index].rtspport, 10),
+          iChannelID = parseInt(_this.hkwsArr[index].channels[0].id, 10),
           bZeroChannel = false
 
       let startRealPlay = function () {
