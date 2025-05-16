@@ -1,8 +1,8 @@
 <template>
   <div id='hkvs'>
-    <el-button>登录</el-button>
+    <el-button @click="clickLogin(1)">登录</el-button>
     <el-button>退出</el-button>
-    <el-button>播放</el-button>
+    <el-button @click="clickStartRealPlay(1)">播放</el-button>
     <div id='divPlugin' class="plugin"></div>
   </div>
 </template>
@@ -178,7 +178,7 @@ export default {
     },
   },
   mounted() {
-    this.clickLogin(1)
+    // this.clickLogin(1)
     // this.clickStartRealPlay(1)
   },
   created() {
