@@ -421,8 +421,7 @@ export default {
       showIframeMax: false,
     };
   },
-  async mounted() {
-    await addMarkerCamera()
+  mounted() {
     let lineDom = this.$refs.glBarChart;
     this.deviceOnlineChart = echarts.init(lineDom);
     this._getDeviceOnline()

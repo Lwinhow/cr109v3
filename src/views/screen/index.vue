@@ -9,7 +9,7 @@
       <!--页面-->
       <content-panle-digital v-if="!$route.query.page" :hkwsArr="hkwsArr" :hkwsFlag1="hkwsFlag1"
                              :hkwsFlag2="hkwsFlag2"></content-panle-digital>
-      <content-panle-alarm v-if="$route.query.page==='alarm'" :hkwsArr="hkwsArr"
+      <content-panle-alarm ref="alarm" v-if="$route.query.page==='alarm'" :hkwsArr="hkwsArr"
                            :hkwsFlag1="hkwsFlag1"
                            :hkwsFlag2="hkwsFlag2"></content-panle-alarm>
       <content-panle-scenario v-if="$route.query.page==='scenario'" ref="scenario"></content-panle-scenario>
@@ -39,7 +39,7 @@ import ContentPanleAlarm from "@/views/screen/view/ContentPanleAlarm.vue";
 import ContentPanleScenario from "@/views/screen/view/ContentPanleScenario.vue";
 import ExplainAuto from "@/components/ExplainAuto.vue";
 import HlsVideo from "@/components/HlsVideo.vue";
-import {markerCamera} from "@/utils/marker";
+import {addMarkerCamera, markerCamera} from "@/utils/marker";
 import HkvsBox from "@/components/hkwsBox.vue";
 import {getCameraAll} from "@/apis/getData";
 
@@ -185,40 +185,6 @@ export default {
         }
       });
     },
-    clickStartRealPlay(iStreamType, ip) {
-      const index = this.hkwsArr.findIndex(item => item.ip === ip);
-      let _this = this
-      let oWndInfo = WebVideoCtrl.I_GetWindowStatus(0),
-          szDeviceIdentify = _this.hkwsIp + "_80",
-          iRtspPort = parseInt(_this.hkwsArr[index].rtspport, 10),
-          iChannelID = parseInt(_this.hkwsArr[index].channels[0].id, 10),
-          bZeroChannel = false
-
-      let startRealPlay = function () {
-        WebVideoCtrl.I_StartRealPlay(szDeviceIdentify, {
-          iStreamType: iStreamType,
-          iChannelID: iChannelID,
-          bZeroChannel: bZeroChannel,
-          iPort: iRtspPort,
-          success: function () {
-            console.log(1);
-          },
-          error: function (oError) {
-            console.log(2);
-          }
-        });
-      };
-
-      if (oWndInfo != null) {// 已经在播放了，先停止
-        WebVideoCtrl.I_Stop({
-          success: function () {
-            startRealPlay();
-          }
-        });
-      } else {
-        startRealPlay();
-      }
-    },
 
     closeVideo() {
       this.videoFlag = false
@@ -300,6 +266,9 @@ export default {
           ]
         })
         this._getCameraAll()
+        if (this.$route.query.page === 'alarm') {
+          await addMarkerCamera()
+        }
       };
       let _onEvent = async (event) => {
         console.log(event)
@@ -319,11 +288,14 @@ export default {
               break;
             }
             if (type === 'marker' && userData) {
-              if (markerCamera[userData].ip) {
-                this.title = markerCamera[userData].name
-                this.videoFlag = true
-                this.clickStartRealPlay(1, markerCamera[userData].ip)
-              }
+              // if (markerCamera[userData].name) {
+              // this.title = markerCamera[userData].name
+              // this.videoFlag = true
+              // this.clickStartRealPlay(1, markerCamera[userData].name)
+              // }
+              const index = this.hkwsArr.findIndex(item => item.devieName === markerCamera[userData].name);
+              console.log(index, markerCamera[userData].name)
+              this.$refs.alarm.hkwsIp = this.hkwsArr[index].ip
               if (markerCamera[userData].camera) {
                 __g.camera.set(markerCamera[userData].camera)
               } else {
