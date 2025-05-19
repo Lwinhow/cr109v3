@@ -89,7 +89,7 @@
           <div class="title">
             <span class="span1"></span>
             <el-select v-model="hkwsIp" class="panle-public-select" placeholder="请选择" popper-class="mySelectStyle"
-                       style="width: 200px" @change="playhkws()">
+                       style="width: 200px">
               <el-option
                   v-for="item in hkwsArr"
                   :key="item.ip"
@@ -237,6 +237,15 @@ export default {
       handler: function (newVal, oldVal) {
         if (newVal && this.hkwsFlag1) {
           this.hkwsIp = this.hkwsArr[0].ip
+          this.playhkws()
+        }
+      },
+      deep: true,
+      immediate: true
+    },
+    hkwsIp: {
+      handler: function (newVal, oldVal) {
+        if (newVal && this.hkwsFlag1 && this.hkwsFlag2) {
           this.playhkws()
         }
       },
@@ -452,7 +461,7 @@ export default {
     this._getPersionStat()
     this._getAttendanceList()
     this._getGasreCord()
-    this.$emit('login',0)
+    this.$emit('login', 0)
     addMarkerCamera()
   },
   destroyed() {

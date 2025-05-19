@@ -307,6 +307,5 @@ export const addMarkerCamera = async () => {
         }
         arr.push(marker)
     }
-    console.log(1)
     await __g.marker.add(arr);
 }
