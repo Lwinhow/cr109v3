@@ -256,12 +256,14 @@ export default {
     hkwsFlag2: {
       type: Boolean,
       default: false
+    },
+    hkwsIp: {
+      type: String,
+      default: null
     }
   },
   data() {
     return {
-      hkwsIp: null,
-
       keyLine: 0, //刷新图表的key
       environmentData: {}, //折线图类型
       environmentLine: {}, //初始数据

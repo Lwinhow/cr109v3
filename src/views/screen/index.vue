@@ -7,9 +7,9 @@
       <head-panle></head-panle>
       <head-menu></head-menu>
       <!--页面-->
-      <content-panle-digital v-if="!$route.query.page" :hkwsArr="hkwsArr" :hkwsFlag1="hkwsFlag1"
+      <content-panle-digital v-if="!$route.query.page" :hkwsArr="hkwsArr" :hkwsIp.sync="hkwsIp" :hkwsFlag1="hkwsFlag1"
                              :hkwsFlag2="hkwsFlag2" @login="loginHkws()"></content-panle-digital>
-      <content-panle-alarm ref="alarm" v-if="$route.query.page==='alarm'" :hkwsArr="hkwsArr"
+      <content-panle-alarm ref="alarm" v-if="$route.query.page==='alarm'" :hkwsIp.sync="hkwsIp" :hkwsArr="hkwsArr"
                            :hkwsFlag1="hkwsFlag1"
                            :hkwsFlag2="hkwsFlag2" @login="loginHkws()"></content-panle-alarm>
       <content-panle-scenario v-if="$route.query.page==='scenario'" ref="scenario"></content-panle-scenario>
@@ -64,7 +64,8 @@ export default {
       videoFlag: false,
       hkwsArr: [],
       hkwsFlag1: false,
-      hkwsFlag2: false
+      hkwsFlag2: false,
+      hkwsIp: null
     };
   },
   mounted() {

@@ -274,6 +274,10 @@ export default {
     hkwsFlag2: {
       type: Boolean,
       default: false
+    },
+    hkwsIp: {
+      type: String,
+      default: null
     }
   },
   data() {
@@ -382,8 +386,6 @@ export default {
         }
       ],
 
-      hkwsIp: null,
-
       PWTStatus: {
         day: [],
         month: []
@@ -422,7 +424,7 @@ export default {
     this._progressChart2()
     this.intervalId = setInterval(this.changeChart, 10000);
     this.fetchWeatherData1()
-    this.$emit('login',0)
+    this.$emit('login', 0)
   },
   beforeDestroy() {
     if (this.intervalId) {
