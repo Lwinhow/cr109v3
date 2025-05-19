@@ -308,7 +308,7 @@ export default {
               // }
               const index = this.hkwsArr.findIndex(item => item.ip === markerCamera[userData].ip);
               console.log(index, markerCamera[userData].name, markerCamera[userData].ip)
-              this.$refs.alarm.hkwsIp = this.hkwsArr[index].ip
+              this.hkwsIp = this.hkwsArr[index].ip
               if (markerCamera[userData].camera) {
                 __g.camera.set(markerCamera[userData].camera)
               } else {
