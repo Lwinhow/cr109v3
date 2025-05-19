@@ -241,6 +241,15 @@ export default {
       deep: true,
       immediate: true
     },
+    hkwsFlag1: {
+      handler: function (newVal, oldVal) {
+        if (newVal) {
+          this.hkwsIp = this.hkwsArr[0].ip
+        }
+      },
+      deep: true,
+      immediate: true
+    },
   },
   props: {
     hkwsArr: {
@@ -402,9 +411,6 @@ export default {
     this._progressChart2()
     this.intervalId = setInterval(this.changeChart, 10000);
     this.fetchWeatherData1()
-    if (this.hkwsArr.length > 0) {
-      this.hkwsIp = this.hkwsArr[0].ip
-    }
   },
   beforeDestroy() {
     if (this.intervalId) {

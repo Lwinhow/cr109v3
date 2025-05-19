@@ -1,18 +1,19 @@
 <template>
   <div id='hkvs'>
     <el-button @click="clickLogin(1)">登录</el-button>
-    <el-button>退出</el-button>
     <el-button @click="clickStartRealPlay(1)">播放</el-button>
     <div id='divPlugin' class="plugin"></div>
   </div>
 </template>
 <script>
 /* eslint-disable */
+import {initPlugin} from "../../public/demo";
+
 export default {
   name: 'divPlugin',
   data() {
     return {
-      loginIp: '192.168.10.119',
+      loginIp: '192.168.10.101',
       port: '80',
       username: 'admin',
       password: 'light12345',
@@ -24,6 +25,7 @@ export default {
     }
   },
   methods: {
+    initPlugin,
     getBZeroChannel() {
       const selectedOption = this.channels.find(
           option => option.id === this.selectedChannel
@@ -95,7 +97,7 @@ export default {
     },
     clickStartRealPlay(iStreamType) {
       let _this = this
-      let oWndInfo = WebVideoCtrl.I_GetWindowStatus(g_iWndIndex),
+      let oWndInfo = WebVideoCtrl.I_GetWindowStatus(0),
           szDeviceIdentify = _this.ip,
           iRtspPort = parseInt(_this.rtspport, 10),
           iChannelID = parseInt(_this.channels[0].id, 10),
@@ -134,6 +136,7 @@ export default {
     },
   },
   mounted() {
+    initPlugin()
     // this.clickLogin(1)
     // this.clickStartRealPlay(1)
   },

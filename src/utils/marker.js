@@ -275,7 +275,6 @@ export const markerCamera = [
 ]
 
 export const addMarkerCamera = async () => {
-    __g.marker.clear()
     const path = window.location.origin;
     let arr = []
     for (let i = 0; i < markerCamera.length; i++) {

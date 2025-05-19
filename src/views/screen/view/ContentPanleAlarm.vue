@@ -222,7 +222,17 @@ import HkvsBox from "@/components/hkwsBox.vue";
 export default {
   name: "ContentPanleAlarm",
   components: {HkvsBox, HlsVideo, ContentLineTbox, CommonDialog, PanleBox},
-  watch: {},
+  watch: {
+    hkwsFlag1: {
+      handler: function (newVal, oldVal) {
+        if (newVal) {
+          this.hkwsIp = this.hkwsArr[0].ip
+        }
+      },
+      deep: true,
+      immediate: true
+    },
+  },
   props: {
     hkwsArr: {
       type: Array,
@@ -429,9 +439,7 @@ export default {
     this._getPersionStat()
     this._getAttendanceList()
     this._getGasreCord()
-    if (this.hkwsArr.length > 0) {
-      this.hkwsIp = this.hkwsArr[0].ip
-    }
+    addMarkerCamera()
   },
   destroyed() {
     clearTimeout(this.hjjcDataTimer);

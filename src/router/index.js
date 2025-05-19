@@ -15,8 +15,8 @@ const routes = [
         component: () => import("@/components/HlsVideo.vue"),
     },
     {
-        path: "/plugin",
-        name: "Plugin",
+        path: "/123",
+        name: "123",
         component: () => import("@/components/divPlugin.vue"),
     },
 ]

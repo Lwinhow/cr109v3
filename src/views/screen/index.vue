@@ -77,8 +77,12 @@ export default {
     this.initPlayer();
   },
   methods: {
+    async sleep(ms) {
+      // console.log(ms);
+      return new Promise(resolve => setTimeout(resolve, ms));
+    },
     _getCameraAll() {
-      getCameraAll().then(res => {
+      getCameraAll().then(async res => {
         if (res) {
           this.hkwsArr = res
           if (this.hkwsArr.length > 0) {
@@ -90,13 +94,15 @@ export default {
 
               let szDeviceIdentify = szIP + "_" + szPort
               let _this = this
-              WebVideoCtrl.I_Login(szIP, 1, szPort, szUsername, szPassword, {
+              await WebVideoCtrl.I_Login(szIP, 1, szPort, szUsername, szPassword, {
                 timeout: 3000,
                 success: function (xmlDoc) {
                   setTimeout(function () {
                     setTimeout(function () {
+                      console.log('通道', i)
                       _this.getChannelInfo(szDeviceIdentify, i);
                     }, 1000);
+                    console.log('端口', i)
                     _this.getDevicePort(szDeviceIdentify, i);
                   }, 10);
                 },
