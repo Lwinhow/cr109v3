@@ -10,19 +10,27 @@
 import LeftMenu from "@/components/sand/LeftMenu.vue";
 import HeadMenu from "@/components/sand/HeadMenu.vue";
 import RightMenu from "@/components/sand/RightMenu.vue";
+import HkvsBox from "@/components/hkwsBox.vue";
 
 export default {
   name: "ContentPanleScenario",
-  components: {RightMenu, HeadMenu, LeftMenu},
+  components: {HkvsBox, RightMenu, HeadMenu, LeftMenu},
   data() {
     return {}
   },
   mounted() {
+    this.hidPlugin()
   },
   destroyed() {
 
   },
-  methods: {}
+  methods: {
+    hidPlugin() {
+      WebVideoCtrl.I_HidPlugin().then(() => {
+      }).catch(() => {
+      })
+    },
+  }
 };
 </script>
 

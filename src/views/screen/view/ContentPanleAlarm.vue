@@ -225,8 +225,19 @@ export default {
   watch: {
     hkwsFlag1: {
       handler: function (newVal, oldVal) {
-        if (newVal) {
+        if (newVal && this.hkwsFlag2) {
           this.hkwsIp = this.hkwsArr[0].ip
+          this.playhkws()
+        }
+      },
+      deep: true,
+      immediate: true
+    },
+    hkwsFlag2: {
+      handler: function (newVal, oldVal) {
+        if (newVal && this.hkwsFlag1) {
+          this.hkwsIp = this.hkwsArr[0].ip
+          this.playhkws()
         }
       },
       deep: true,
@@ -439,6 +450,7 @@ export default {
     this._getPersionStat()
     this._getAttendanceList()
     this._getGasreCord()
+    this.$emit('login',0)
     addMarkerCamera()
   },
   destroyed() {
@@ -453,8 +465,27 @@ export default {
     clearTimeout(this.deviceOnlineTimer);
     this.deviceOnlineTimer = null;
     __g.marker.clear()
+    this.hidPlugin()
+  },
+  created() {
+    // this.showPlugin()
   },
   methods: {
+    destroyPlugin() {
+      WebVideoCtrl.I_DestroyPlugin().then(() => {
+      }).catch(() => {
+      })
+    },
+    showPlugin() {
+      WebVideoCtrl.I_ShowPlugin().then(() => {
+      }).catch(() => {
+      })
+    },
+    hidPlugin() {
+      WebVideoCtrl.I_HidPlugin().then(() => {
+      }).catch(() => {
+      })
+    },
     playhkws() {
       console.log(this.hkwsArr)
       console.log(this.hkwsFlag1, this.hkwsFlag2)
@@ -465,6 +496,7 @@ export default {
     clickStartRealPlay(iStreamType) {
       const index = this.hkwsArr.findIndex(item => item.ip === this.hkwsIp);
       let _this = this
+      console.log(_this.hkwsArr[index])
       let oWndInfo = WebVideoCtrl.I_GetWindowStatus(0),
           szDeviceIdentify = _this.hkwsIp + "_80",
           iRtspPort = parseInt(_this.hkwsArr[index].rtspport, 10),

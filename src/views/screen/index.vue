@@ -8,10 +8,10 @@
       <head-menu></head-menu>
       <!--页面-->
       <content-panle-digital v-if="!$route.query.page" :hkwsArr="hkwsArr" :hkwsFlag1="hkwsFlag1"
-                             :hkwsFlag2="hkwsFlag2"></content-panle-digital>
+                             :hkwsFlag2="hkwsFlag2" @login="loginHkws()"></content-panle-digital>
       <content-panle-alarm ref="alarm" v-if="$route.query.page==='alarm'" :hkwsArr="hkwsArr"
                            :hkwsFlag1="hkwsFlag1"
-                           :hkwsFlag2="hkwsFlag2"></content-panle-alarm>
+                           :hkwsFlag2="hkwsFlag2" @login="loginHkws()"></content-panle-alarm>
       <content-panle-scenario v-if="$route.query.page==='scenario'" ref="scenario"></content-panle-scenario>
       <explain-auto></explain-auto>
     </div>
@@ -77,24 +77,17 @@ export default {
     this.initPlayer();
   },
   methods: {
-    async sleep(ms) {
-      // console.log(ms);
-      return new Promise(resolve => setTimeout(resolve, ms));
-    },
-    _getCameraAll() {
-      getCameraAll().then(async res => {
-        if (res) {
-          this.hkwsArr = res
-          if (this.hkwsArr.length > 0) {
-            for (let i = 0; i < this.hkwsArr.length; i++) {
-              let szIP = this.hkwsArr[i].ip,
-                  szPort = '80',
-                  szUsername = this.hkwsArr[i].username,
-                  szPassword = this.hkwsArr[i].password
+    async loginHkws(index) {
+      if (this.hkwsArr.length > 0) {
+        for (let i = index; i < this.hkwsArr.length; i++) {
+          let szIP = this.hkwsArr[i].ip,
+              szPort = '80',
+              szUsername = this.hkwsArr[i].username,
+              szPassword = this.hkwsArr[i].password
 
-              let szDeviceIdentify = szIP + "_" + szPort
-              let _this = this
-              await WebVideoCtrl.I_Login(szIP, 1, szPort, szUsername, szPassword, {
+          let szDeviceIdentify = szIP + "_" + szPort
+          let _this = this
+          await WebVideoCtrl.I_Login(szIP, 1, szPort, szUsername, szPassword, {
                 timeout: 3000,
                 success: function (xmlDoc) {
                   setTimeout(function () {
@@ -106,12 +99,25 @@ export default {
                     _this.getDevicePort(szDeviceIdentify, i);
                   }, 10);
                 },
-                error: function (oError) {
+                error: async function (oError) {
                   console.log('oError', oError)
+                  await _this.loginHkws(i + 1)
                 }
-              });
-            }
-          }
+              }
+          )
+          ;
+        }
+      }
+    },
+    async sleep(ms) {
+      // console.log(ms);
+      return new Promise(resolve => setTimeout(resolve, ms));
+    },
+    _getCameraAll() {
+      getCameraAll().then(async res => {
+        if (res) {
+          this.hkwsArr = res
+          await this.loginHkws(0)
         }
       }).catch(err => {
       })
@@ -347,7 +353,8 @@ export default {
   destroyed() {
     __g.destroy();
   },
-};
+}
+;
 </script>
 
 <style lang="scss" scoped>
