@@ -446,6 +446,36 @@ export default {
             '3_uAOEkfT4WeIeT2AdYbAA',
             '0sz9L2W994Iwh4dFR171JF',
             '0sz9L2W994Iwh4dFR171J1',
+
+            '3FQHZ745v0nRHNuL81MJpu',
+            '3FQHZ745v0nRHNuL81MJpd',
+            '3m0Xun4Lv8ReAhc_j3bzD6',
+            '3m0Xun4Lv8ReAhc_j3bz2I',
+            '1F3CvCjNr8RBu2CqU7sP35',
+            '1F3CvCjNr8RBu2CqU7sPO0',
+            '1F3CvCjNr8RBu2CqU7sP37',
+            '1xf4GVaRn0RvReoam42$Oe',
+            '1xf4GVaRn0RvReoam42$Og',
+            '1xf4GVaRn0RvReoam42$Mb',
+            '2K9Mu3NMD4TBZUzEj4bNHb',
+            '2K9Mu3NMD4TBZUzEj4bNHl',
+            '2K9Mu3NMD4TBZUzEj4bNVw',
+            '2K9Mu3NMD4TBZUzEj4bMAG',
+            '2K9Mu3NMD4TBZUzEj4bMAM',
+            '3DxbkRl6jEce_D7ryz2BGx',
+            '3DxbkRl6jEce_D7ryz2BT1',
+            '1xf4GVaRn0RvReoam42$EC',
+            '1xf4GVaRn0RvReoam42$Fo',
+            '1xf4GVaRn0RvReoam42$Cn',
+            '1xf4GVaRn0RvReoam42$Ct',
+            '1F3CvCjNr8RBu2CqU7sP99',
+            '1xf4GVaRn0RvReoam42$Cb',
+            '1F3CvCjNr8RBu2CqU7sP3R',
+            '1F3CvCjNr8RBu2CqU7sPLb',
+            '1YPnTiFCDA9B$BLjtbT7AH',
+            '1YPnTiFCDA9B$BLjtbT79R',
+            '3FQHZ745v0nRHNuL81MJpw',
+            '3FQHZ745v0nRHNuL81MJpv',
           ]
         })
         __g.customObject.addByTileLayer({
@@ -627,8 +657,46 @@ export default {
           location: [],
           coordinateType: 0,
         })
+        __g.customObject.addByTileLayer({
+          id: 'zjmx3',
+          tileLayerId: '37A846BB400BB416C7E7E3983F2A5844',
+          objectId: [
+            '3FQHZ745v0nRHNuL81MJpu',
+            '3FQHZ745v0nRHNuL81MJpd',
+            '3m0Xun4Lv8ReAhc_j3bzD6',
+            '3m0Xun4Lv8ReAhc_j3bz2I',
+            '1F3CvCjNr8RBu2CqU7sP35',
+            '1F3CvCjNr8RBu2CqU7sPO0',
+            '1F3CvCjNr8RBu2CqU7sP37',
+            '1xf4GVaRn0RvReoam42$Oe',
+            '1xf4GVaRn0RvReoam42$Og',
+            '1xf4GVaRn0RvReoam42$Mb',
+            '2K9Mu3NMD4TBZUzEj4bNHb',
+            '2K9Mu3NMD4TBZUzEj4bNHl',
+            '2K9Mu3NMD4TBZUzEj4bNVw',
+            '2K9Mu3NMD4TBZUzEj4bMAG',
+            '2K9Mu3NMD4TBZUzEj4bMAM',
+            '3DxbkRl6jEce_D7ryz2BGx',
+            '3DxbkRl6jEce_D7ryz2BT1',
+            '1xf4GVaRn0RvReoam42$EC',
+            '1xf4GVaRn0RvReoam42$Fo',
+            '1xf4GVaRn0RvReoam42$Cn',
+            '1xf4GVaRn0RvReoam42$Ct',
+            '1F3CvCjNr8RBu2CqU7sP99',
+            '1xf4GVaRn0RvReoam42$Cb',
+            '1F3CvCjNr8RBu2CqU7sP3R',
+            '1F3CvCjNr8RBu2CqU7sPLb',
+            '1YPnTiFCDA9B$BLjtbT7AH',
+            '1YPnTiFCDA9B$BLjtbT79R',
+            '3FQHZ745v0nRHNuL81MJpw',
+            '3FQHZ745v0nRHNuL81MJpv',
+          ],
+          location: [],
+          coordinateType: 0,
+        })
         __g.customObject.setTintColor('zjmx1', '#c71e1e')
         __g.customObject.setTintColor('zjmx2', '#f8c605')
+        __g.customObject.setTintColor('zjmx3', '#9a8e8e')
         this._getCameraAll()
         if (this.$route.query.page === 'alarm') {
           await addMarkerCamera()
