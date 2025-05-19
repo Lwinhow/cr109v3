@@ -7,11 +7,11 @@
       <head-panle></head-panle>
       <head-menu></head-menu>
       <!--页面-->
-      <content-panle-digital v-if="!$route.query.page" :hkwsArr="hkwsArr" :hkwsIp.sync="hkwsIp" :hkwsFlag1="hkwsFlag1"
-                             :hkwsFlag2="hkwsFlag2" @login="loginHkws()"></content-panle-digital>
-      <content-panle-alarm ref="alarm" v-if="$route.query.page==='alarm'" :hkwsIp.sync="hkwsIp" :hkwsArr="hkwsArr"
-                           :hkwsFlag1="hkwsFlag1"
-                           :hkwsFlag2="hkwsFlag2" @login="loginHkws()"></content-panle-alarm>
+      <content-panle-digital v-if="!$route.query.page" :hkwsArr="hkwsArr" :hkwsFlag1="hkwsFlag1" :hkwsFlag2="hkwsFlag2"
+                             :hkwsIp.sync="hkwsIp" @login="loginHkws()"></content-panle-digital>
+      <content-panle-alarm v-if="$route.query.page==='alarm'" ref="alarm" :hkwsArr="hkwsArr" :hkwsFlag1="hkwsFlag1"
+                           :hkwsFlag2="hkwsFlag2"
+                           :hkwsIp.sync="hkwsIp" @login="loginHkws()"></content-panle-alarm>
       <content-panle-scenario v-if="$route.query.page==='scenario'" ref="scenario"></content-panle-scenario>
       <explain-auto></explain-auto>
     </div>
@@ -306,8 +306,8 @@ export default {
               // this.videoFlag = true
               // this.clickStartRealPlay(1, markerCamera[userData].name)
               // }
-              const index = this.hkwsArr.findIndex(item => item.devieName === markerCamera[userData].name);
-              console.log(index, markerCamera[userData].name)
+              const index = this.hkwsArr.findIndex(item => item.ip === markerCamera[userData].ip);
+              console.log(index, markerCamera[userData].name, markerCamera[userData].ip)
               this.$refs.alarm.hkwsIp = this.hkwsArr[index].ip
               if (markerCamera[userData].camera) {
                 __g.camera.set(markerCamera[userData].camera)
