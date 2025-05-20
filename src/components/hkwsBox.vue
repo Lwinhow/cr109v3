@@ -23,7 +23,7 @@ export default {
 <style lang="scss" scoped>
 .plugin{
   width: 270px;
-  height: 150px;
+  height: 140px;
   border: 0;
 }
 </style>
