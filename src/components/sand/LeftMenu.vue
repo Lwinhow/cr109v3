@@ -40,6 +40,7 @@ export default {
             __g.infoTree.hide([
               '9561C9FE4B3F953060DA20993729C110',//在建
               'F762F9024430C36142D448BDFAF4B0FF',//倾斜摄影
+              '3D378F6140734B6EA6DA10AF135E47C5',//检测模型
             ])
             break;
           case 3:
@@ -52,6 +53,7 @@ export default {
             __g.infoTree.show([
               '9561C9FE4B3F953060DA20993729C110',//在建
               'F762F9024430C36142D448BDFAF4B0FF',//倾斜摄影
+              '3D378F6140734B6EA6DA10AF135E47C5',//检测模型
             ])
             break;
           case 4:
