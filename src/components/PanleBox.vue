@@ -35,6 +35,12 @@ export default {
         case title.includes("Toolbox Meeting"):
           window.open("https://server.globalbes.sg/ctmgr/index.php?r=tbm/meeting/list&program_id=4076");
           break;
+        case title.includes("Overview Video"):
+          WebVideoCtrl.I_FullScreen(true)
+          break;
+        case title.includes("Video Monitoring"):
+          WebVideoCtrl.I_FullScreen(true)
+          break;
         default:
           break
       }
