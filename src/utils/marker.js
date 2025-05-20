@@ -305,7 +305,8 @@ export const addMarkerCamera = async () => {
             priority: 0, //避让优先级
             occlusionCull: false //是否参与遮挡剔
         }
-        arr.push(marker)
+        if (markerCamera[i].ip)
+            arr.push(marker)
     }
     await __g.marker.add(arr);
 }

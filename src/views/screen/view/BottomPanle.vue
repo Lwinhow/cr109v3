@@ -2,8 +2,7 @@
   <div class="bottom-bg" @wheel="handleWheel">
     <el-steps :active=active align-center finish-status="success">
       <el-step description="Project commencement" title='2022.3'></el-step>
-      <el-step description="Current stage" title='2025.5'></el-step>
-      <el-step description="Cut and Cover Tunnel Completion" title='2025.5'></el-step>
+      <el-step description="Cut and Cover Tunnel Completion" title='2025.12'></el-step>
       <el-step description="TBM Bore Tunnel Structure Completion" title='2026.3'></el-step>
       <el-step description="Station Underground Structure Completion" title='2027.3'></el-step>
       <el-step description="Completion the whole of Works" title='2029.12'></el-step>
