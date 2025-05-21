@@ -427,6 +427,11 @@ export default {
           job: 'Deputy tunnel manager',
           phone: '+65 9112 2962',
         },
+        {
+          name: 'Jason Lin',
+          job: 'Deputy WSH Manager',
+          phone: '+65 8872 9682',
+        },
       ],
 
       attendanceData: {
