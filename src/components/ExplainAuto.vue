@@ -44,9 +44,9 @@ export default {
           if (this.sleepIndex === 25) {
             __g.infoTree.show('C010BA13489E0704A9415B8B10B9671B')
           } else if (this.sleepIndex === 9) {
-            __g.tileLayer.setStyle('3EC1C1A94AA9071D0C1D0BB748998572', 1)
+            __g.tileLayer.setStyle('1F909CEE458CDD7A6A43C7B1C1EA7CBE', 1)
           } else if (this.sleepIndex === 18) {
-            __g.tileLayer.setStyle('3EC1C1A94AA9071D0C1D0BB748998572', 0)
+            __g.tileLayer.setStyle('1F909CEE458CDD7A6A43C7B1C1EA7CBE', 0)
           } else if (this.sleepIndex === 29) {
             __g.infoTree.hide('C010BA13489E0704A9415B8B10B9671B')
           } else if (this.sleepIndex === 30) {
@@ -64,45 +64,45 @@ export default {
             fdapi.tools.startVolumeClip(bbox, 0, false, false, [0, 0, 0]);
           } else if (this.sleepIndex === 91) {
             __g.tools.stopVolumeClip();
-            __g.tileLayer.showAllActors([
-              '6F131A6E44FC74C00A89DB85C75F348F',
-              '2929EE0F4E3B5DBC106A5E84D5A11CF7',
-              '36CFF0E147FA230EDF52B8BE76FCF595',
-              '8A7A0751443140169B4CDFAABD31B60F'
-            ])
+            // __g.tileLayer.showAllActors([
+            //   '6F131A6E44FC74C00A89DB85C75F348F',
+            //   '2929EE0F4E3B5DBC106A5E84D5A11CF7',
+            //   '36CFF0E147FA230EDF52B8BE76FCF595',
+            //   '8A7A0751443140169B4CDFAABD31B60F'
+            // ])
             __g.camera.playAnimation(10);
           } else if (this.sleepIndex === 103) {
             __g.camera.playAnimation(9);
           } else if (this.sleepIndex === 104) {
-            __g.tileLayer.hideActors({
-              id: '6F131A6E44FC74C00A89DB85C75F348F',
-              objectIds: [
-                '3mV$bRpMjGjht$IScT9Dpb',
-                '134JEIq4YG4im5bKeqZ3pJ',
-              ]
-            })
-            __g.tileLayer.hideActors({
-              id: '2929EE0F4E3B5DBC106A5E84D5A11CF7',
-              objectIds: [
-                '1b2LVM2n49_sCqbWJHFhS$',
-                '0mtLUR_lqO6dSzIpY61rEU',
-                '0QePe94mzzuzNlBJbwzKEi'
-              ]
-            })
-            __g.tileLayer.hideActors({
-              id: '36CFF0E147FA230EDF52B8BE76FCF595',
-              objectIds: [
-                '2pzNAvAEh7VNN8E8neu1N4',
-                '0baV0pUg15C1eNga5znb1x',
-              ]
-            })
-            __g.tileLayer.hideActors({
-              id: '8A7A0751443140169B4CDFAABD31B60F',
-              objectIds: [
-                '2F$DRDi68uQK5aXzHna14s',
-                '1Gdp$l43ehsjNt$V8ijmNo',
-              ]
-            })
+            //   __g.tileLayer.hideActors({
+            //     id: '6F131A6E44FC74C00A89DB85C75F348F',
+            //     objectIds: [
+            //       '3mV$bRpMjGjht$IScT9Dpb',
+            //       '134JEIq4YG4im5bKeqZ3pJ',
+            //     ]
+            //   })
+            //   __g.tileLayer.hideActors({
+            //     id: '2929EE0F4E3B5DBC106A5E84D5A11CF7',
+            //     objectIds: [
+            //       '1b2LVM2n49_sCqbWJHFhS$',
+            //       '0mtLUR_lqO6dSzIpY61rEU',
+            //       '0QePe94mzzuzNlBJbwzKEi'
+            //     ]
+            //   })
+            //   __g.tileLayer.hideActors({
+            //     id: '36CFF0E147FA230EDF52B8BE76FCF595',
+            //     objectIds: [
+            //       '2pzNAvAEh7VNN8E8neu1N4',
+            //       '0baV0pUg15C1eNga5znb1x',
+            //     ]
+            //   })
+            //   __g.tileLayer.hideActors({
+            //     id: '8A7A0751443140169B4CDFAABD31B60F',
+            //     objectIds: [
+            //       '2F$DRDi68uQK5aXzHna14s',
+            //       '1Gdp$l43ehsjNt$V8ijmNo',
+            //     ]
+            //   })
           }
         } else {
           return 0
@@ -182,45 +182,45 @@ export default {
               fdapi.tools.startVolumeClip(bbox, 0, false, false, [0, 0, 0]);
             } else if (this.sleepIndex === 91) {
               __g.tools.stopVolumeClip();
-              __g.tileLayer.showAllActors([
-                '6F131A6E44FC74C00A89DB85C75F348F',
-                '2929EE0F4E3B5DBC106A5E84D5A11CF7',
-                '36CFF0E147FA230EDF52B8BE76FCF595',
-                '8A7A0751443140169B4CDFAABD31B60F'
-              ])
+              // __g.tileLayer.showAllActors([
+              //   '6F131A6E44FC74C00A89DB85C75F348F',
+              //   '2929EE0F4E3B5DBC106A5E84D5A11CF7',
+              //   '36CFF0E147FA230EDF52B8BE76FCF595',
+              //   '8A7A0751443140169B4CDFAABD31B60F'
+              // ])
               __g.camera.playAnimation(10);
             } else if (this.sleepIndex === 103) {
               __g.camera.playAnimation(9);
             } else if (this.sleepIndex === 104) {
-              __g.tileLayer.hideActors({
-                id: '6F131A6E44FC74C00A89DB85C75F348F',
-                objectIds: [
-                  '3mV$bRpMjGjht$IScT9Dpb',
-                  '134JEIq4YG4im5bKeqZ3pJ',
-                ]
-              })
-              __g.tileLayer.hideActors({
-                id: '2929EE0F4E3B5DBC106A5E84D5A11CF7',
-                objectIds: [
-                  '1b2LVM2n49_sCqbWJHFhS$',
-                  '0mtLUR_lqO6dSzIpY61rEU',
-                  '0QePe94mzzuzNlBJbwzKEi'
-                ]
-              })
-              __g.tileLayer.hideActors({
-                id: '36CFF0E147FA230EDF52B8BE76FCF595',
-                objectIds: [
-                  '2pzNAvAEh7VNN8E8neu1N4',
-                  '0baV0pUg15C1eNga5znb1x',
-                ]
-              })
-              __g.tileLayer.hideActors({
-                id: '8A7A0751443140169B4CDFAABD31B60F',
-                objectIds: [
-                  '2F$DRDi68uQK5aXzHna14s',
-                  '1Gdp$l43ehsjNt$V8ijmNo',
-                ]
-              })
+              //   __g.tileLayer.hideActors({
+              //     id: '6F131A6E44FC74C00A89DB85C75F348F',
+              //     objectIds: [
+              //       '3mV$bRpMjGjht$IScT9Dpb',
+              //       '134JEIq4YG4im5bKeqZ3pJ',
+              //     ]
+              //   })
+              //   __g.tileLayer.hideActors({
+              //     id: '2929EE0F4E3B5DBC106A5E84D5A11CF7',
+              //     objectIds: [
+              //       '1b2LVM2n49_sCqbWJHFhS$',
+              //       '0mtLUR_lqO6dSzIpY61rEU',
+              //       '0QePe94mzzuzNlBJbwzKEi'
+              //     ]
+              //   })
+              //   __g.tileLayer.hideActors({
+              //     id: '36CFF0E147FA230EDF52B8BE76FCF595',
+              //     objectIds: [
+              //       '2pzNAvAEh7VNN8E8neu1N4',
+              //       '0baV0pUg15C1eNga5znb1x',
+              //     ]
+              //   })
+              //   __g.tileLayer.hideActors({
+              //     id: '8A7A0751443140169B4CDFAABD31B60F',
+              //     objectIds: [
+              //       '2F$DRDi68uQK5aXzHna14s',
+              //       '1Gdp$l43ehsjNt$V8ijmNo',
+              //     ]
+              //   })
             }
           } else {
             return 0

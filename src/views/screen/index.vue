@@ -247,38 +247,38 @@ export default {
         __g.tools.stopVolumeClip();
         __g.infoTree.hide([
           'F6ABC22442B91B5EF7C740BAE23991BA',//商场模型
-          'FBE4932F4A31B2BEE5955B835E017551',//结构模型
+          '734A66D94AA5D43840FF8DB6CD3EF00E',//结构模型
           '2FBB0F894CFD2ECF697760A7DCA61969',//项目模型
           '349280C44403CF4FA47257999931BEF5',//工程走向
-          'C010BA13489E0704A9415B8B10B9671B',
-          'F0CD9D044374CF7D5CE36A9EF14A61E5',
-          '32861C9A4457CC78A01B3E8BEC224D76',
-          '6433422F4DEC29AE77FE98BD968309AA',
-          'C384DB1C41C1AD0E2219D68BA931D25E',
+          'C010BA13489E0704A9415B8B10B9671B',//漫游配置
+          'F0CD9D044374CF7D5CE36A9EF14A61E5',//漫游配置
+          '32861C9A4457CC78A01B3E8BEC224D76',//漫游配置
+          '6433422F4DEC29AE77FE98BD968309AA',//漫游配置
+          'C384DB1C41C1AD0E2219D68BA931D25E',//漫游配置
         ])
         __g.infoTree.show([
-          '9561C9FE4B3F953060DA20993729C110',//在建
+          '9561C9FE4B3F953060DA20993729C110',//在建模型
           'F762F9024430C36142D448BDFAF4B0FF',//倾斜摄影
-          '26A2E41640223B909F3EAF8C3E11880C',
-          '3D7E4151485286E3184AF0A15B35C988',
-          '3D378F6140734B6EA6DA10AF135E47C5',
-          'F1085241443B54131403E6B50778A59B',
+          '26A2E41640223B909F3EAF8C3E11880C',//周边建筑
+          '3D7E4151485286E3184AF0A15B35C988',//地形
+          '3D378F6140734B6EA6DA10AF135E47C5',//检测模型
+          'F1085241443B54131403E6B50778A59B',//在建隧道
+          '9561C9FE4B3F953060DA20993729C110',//隧道2
         ])
-        __g.tileLayer.hideActors({
-          id: '6F131A6E44FC74C00A89DB85C75F348F',
-          objectIds: [
-            '3mV$bRpMjGjht$IScT9Dpb',
-            '134JEIq4YG4im5bKeqZ3pJ',
-          ]
-        })
-        __g.tileLayer.hideActors({
-          id: '2929EE0F4E3B5DBC106A5E84D5A11CF7',
-          objectIds: [
-            '1b2LVM2n49_sCqbWJHFhS$',
-            '0mtLUR_lqO6dSzIpY61rEU',
-            '0QePe94mzzuzNlBJbwzKEi'
-          ]
-        })
+        // __g.tileLayer.hideActors({
+        //   id: 'C2265D4D4B81DEC1F9DC95896C06B293',
+        //   objectIds: [
+        //     '3mV$bRpMjGjht$IScT9Dpb',
+        //     '134JEIq4YG4im5bKeqZ3pJ',
+        //   ]
+        // })
+        // __g.tileLayer.hideActors({
+        //   id: '2D855E3A4C80CF5CA34F4393DAC4C049',
+        //   objectIds: [
+        //     '1b2LVM2n49_sCqbWJHFhS$',
+        //     '0mtLUR_lqO6dSzIpY61rEU',
+        //   ]
+        // })
         __g.tileLayer.hideActors({
           id: '37A846BB400BB416C7E7E3983F2A5844',
           objectIds: [

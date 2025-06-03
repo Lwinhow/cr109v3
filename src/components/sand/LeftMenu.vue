@@ -81,11 +81,7 @@ export default {
               'F6ABC22442B91B5EF7C740BAE23991BA',//商业模型
               '2FBB0F894CFD2ECF697760A7DCA61969',//上层模型
 
-              '8A7A0751443140169B4CDFAABD31B60F',//轨道线
-              '36CFF0E147FA230EDF52B8BE76FCF595',//轨道线
-              '1F909CEE458CDD7A6A43C7B1C1EA7CBE',//站点
-              '210870EB4788D84765F42A80A86A3A34',//轨道线
-              '34E3DC474E85B6154FB661A88CDBAD6D',//轨道线
+              '734A66D94AA5D43840FF8DB6CD3EF00E',//结构模型
             ])
             __g.tileLayer.hideActors([
               {
