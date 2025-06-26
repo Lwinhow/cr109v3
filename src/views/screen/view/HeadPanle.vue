@@ -14,6 +14,8 @@
         <div class="ct-l3"></div>
       </div>
       <div v-show="$route.query.page!=='scenario'" class="head-panle-ct-r">
+        <div class="ct-r4" @click="showImage=!showImage"></div>
+        <div class="ct-r2"></div>
         <div class="ct-r3" @click="toSandBox"></div>
         <div class="ct-r2"></div>
         <div class="ct-r1" @click="refreshClick"></div>
@@ -21,6 +23,9 @@
     </div>
     <!-- 底部 -->
     <div class="bottom-panle"></div>
+
+    <!--  弹出图片  -->
+    <div v-if="showImage" class="popImage"></div>
   </div>
 </template>
 
@@ -28,7 +33,9 @@
 export default {
   name: "HeadPanle",
   data() {
-    return {};
+    return {
+      showImage: false
+    };
   },
   mounted() {
   },
@@ -40,8 +47,7 @@ export default {
       location.reload()
     },
   },
-}
-;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -165,7 +171,15 @@ export default {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      column-gap: 15px;
+      column-gap: 10px;
+
+      .ct-r4 {
+        width: 35px;
+        height: 35px;
+        background: url("@/assets/screenimages/showImage.png") center center no-repeat;
+        background-size: 35px 35px;
+        cursor: pointer;
+      }
 
       .ct-r3 {
         width: 30px;
@@ -219,6 +233,16 @@ export default {
     background: url('@/assets/screenimages/screen-bottom-bg.png') center bottom no-repeat;
     background-size: auto 30px;
     overflow: hidden;
+  }
+
+  .popImage {
+    position: absolute;
+    width: 1000px;
+    height: 600px;
+    top: 200px;
+    left: 450px;
+    background: url('~@/assets/images/image1.png') no-repeat;
+    background-size: 100% 100%;
   }
 }
 </style>
