@@ -15,7 +15,7 @@ export default {
   name: "BottomPanle",
   data() {
     return {
-      active: 3,
+      active: 1,
     };
   },
   methods: {
